@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "timeline.schema.json",
+  "title": "Timeline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fps",
+    "width",
+    "height",
+    "tracks"
+  ],
+  "properties": {
+    "fps": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*(/[1-9][0-9]*)?$"
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "clips"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "audio",
+              "keyframe",
+              "overlay",
+              "subtitle",
+              "video"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "clips": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "source",
+                "duration"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "start": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "duration": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "in_point": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "transition": {
+                  "type": "string",
+                  "enum": [
+                    "cut",
+                    "dip_black",
+                    "dissolve"
+                  ]
+                },
+                "transition_frames": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "gain_db": {
+                  "type": "number"
+                },
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                },
+                "is_image": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

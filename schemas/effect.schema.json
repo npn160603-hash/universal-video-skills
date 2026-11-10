@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "effect.schema.json",
+  "title": "Colour look or effect",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "look": {
+      "type": "string",
+      "enum": [
+        "bright_educational",
+        "clean_documentary",
+        "dark_investigative",
+        "desaturated_emotional",
+        "modern_commercial",
+        "moody_cinematic",
+        "natural_daylight",
+        "retro_film",
+        "soft_romantic",
+        "warm_lifestyle"
+      ]
+    },
+    "intensity": {
+      "type": "string",
+      "enum": [
+        "cinematic",
+        "dynamic",
+        "standard",
+        "subtle"
+      ]
+    },
+    "lut": {
+      "type": "string",
+      "pattern": "\\.cube$"
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "look"
+      ]
+    },
+    {
+      "required": [
+        "lut"
+      ]
+    }
+  ]
+}

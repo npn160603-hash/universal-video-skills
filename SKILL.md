@@ -1,15 +1,21 @@
 # universal-video-skills (index)
 
-Skills implemented so far. Each skill has its own `SKILL.md` under `skills/`.
+Skills implemented so far. Each has a SKILL.md under `skills/`. Partial skills list what is missing.
 
 | Skill | Status | Entry point |
 |---|---|---|
-| `professional-caption-design` | Implemented, tested | `skills/professional-caption-design/SKILL.md` |
-| `video-quality-assurance` | Implemented, tested | `skills/video-quality-assurance/SKILL.md` |
+| `ai-director` | Partial (rule-based) | `skills/ai-director/SKILL.md` |
+| `professional-caption-design` | Done (tested) | `skills/professional-caption-design/SKILL.md` |
+| `professional-timeline-editing` | Partial | `skills/professional-timeline-editing/SKILL.md` |
+| `advanced-motion-design` | Partial (easing, keyframes) | `skills/advanced-motion-design/SKILL.md` |
+| `cinematic-post-production` | Partial (colour, audio) | `skills/cinematic-post-production/SKILL.md` |
+| `data-visual-storytelling` | Partial (bar chart) | `skills/data-visual-storytelling/SKILL.md` |
+| `semantic-media-selection` | Partial (index, duplicates, ranking) | `skills/semantic-media-selection/SKILL.md` |
+| `video-quality-assurance` | Partial (technical and audio QA) | `skills/video-quality-assurance/SKILL.md` |
 
-Other skills from the master prompt (timeline editing, motion design, color/audio, maps, charts,
-media selection, style system, decision engine) are **not implemented**. Their status is in
-`architecture/capability-matrix.md`. They have no SKILL.md on purpose, because a description
-without working code does not count as a skill here.
+Not implemented, so there is no SKILL.md: maps and animated routes (`cinematic-map-animation`), emotional sound design
+beyond music levels and SFX placement, the video style system beyond looks, and a separate decision engine
+(the decision record lives in the director).
 
-Render pipeline: `uvs/render.py` (`python3 -m uvs.render --out out/demo`).
+Pipeline: `python3 -m uvs.pipeline examples/demo_pipeline/spec.json out/pipeline_demo`.
+Status of every feature: `architecture/capability-matrix.md`.

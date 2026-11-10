@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scene.schema.json",
+  "title": "Director plan scene",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "start",
+    "end",
+    "text",
+    "emotion",
+    "intensity",
+    "pacing",
+    "transition",
+    "transition_duration",
+    "turning_point",
+    "music_level",
+    "sfx",
+    "caption_style",
+    "color_look",
+    "decisions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^S[0-9]{2,}$"
+    },
+    "start": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end": {
+      "type": "number",
+      "minimum": 0
+    },
+    "text": {
+      "type": "string"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": [
+        "grief",
+        "tension",
+        "warmth",
+        "neutral"
+      ]
+    },
+    "intensity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pacing": {
+      "type": "string",
+      "enum": [
+        "FAST",
+        "MEDIUM",
+        "SLOW",
+        "DYNAMIC"
+      ]
+    },
+    "transition": {
+      "type": "string",
+      "enum": [
+        "cut",
+        "dip_black",
+        "dissolve"
+      ]
+    },
+    "transition_duration": {
+      "type": "number",
+      "minimum": 0
+    },
+    "turning_point": {
+      "type": "boolean"
+    },
+    "music_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "sfx": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "caption_style": {
+      "type": "string",
+      "enum": [
+        "bold_shorts",
+        "cinematic",
+        "documentary_minimal",
+        "emotional_storytelling"
+      ]
+    },
+    "color_look": {
+      "type": "string",
+      "enum": [
+        "bright_educational",
+        "clean_documentary",
+        "dark_investigative",
+        "desaturated_emotional",
+        "modern_commercial",
+        "moody_cinematic",
+        "natural_daylight",
+        "retro_film",
+        "soft_romantic",
+        "warm_lifestyle"
+      ]
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  }
+}

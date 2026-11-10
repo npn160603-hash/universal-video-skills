@@ -1,0 +1,11 @@
+{
+  "_note": "Synthetic end-to-end demo. Footage, voice, music and impact are generated stand-ins (see pipeline_report.json). Word timings are hand-authored.",
+  "title": "Bà tôi và nồi cháo",
+  "genre": "real_life_storytelling",
+  "words": "../demo_caption/words.json",
+  "keywords": ["cháo", "5"],
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "look_intensity": "standard"
+}

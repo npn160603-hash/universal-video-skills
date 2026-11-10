@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "animation.schema.json",
+  "title": "Keyframe track",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "keyframes"
+  ],
+  "properties": {
+    "keyframes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "time",
+          "value"
+        ],
+        "properties": {
+          "time": {
+            "type": "number",
+            "minimum": 0
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "items": {
+                  "type": "number"
+                }
+              }
+            ]
+          },
+          "easing": {
+            "type": "string",
+            "enum": [
+              "bounce_out",
+              "damped_oscillation",
+              "ease_in",
+              "ease_in_out",
+              "ease_out",
+              "elastic_out",
+              "linear",
+              "overshoot",
+              "spring"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

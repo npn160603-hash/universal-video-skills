@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project.schema.json",
+  "title": "Pipeline project spec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "genre",
+    "words"
+  ],
+  "properties": {
+    "_note": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "genre": {
+      "type": "string",
+      "enum": [
+        "business_technology",
+        "cinematic_essay",
+        "educational_explainer",
+        "geography_travel",
+        "historical_documentary",
+        "mystery_investigative",
+        "news_explainer",
+        "personal_experience_life_lessons",
+        "psychology_emotional",
+        "real_life_storytelling",
+        "self_improvement_motivational",
+        "short_lifestyle"
+      ]
+    },
+    "words": {
+      "type": "string",
+      "minLength": 1,
+      "description": "word timings JSON, relative to the spec"
+    },
+    "footage": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "voice": {
+      "type": "string"
+    },
+    "music": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "auto_numbers": {
+      "type": "boolean"
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120
+    },
+    "look_intensity": {
+      "type": "string",
+      "enum": [
+        "cinematic",
+        "dynamic",
+        "standard",
+        "subtle"
+      ]
+    }
+  }
+}
