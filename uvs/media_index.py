@@ -1,19 +1,26 @@
 """Local media index (semantic-media-selection, Phase 3).
 
 Indexes images, videos, and audio in a folder: dimensions, orientation, duration, fps, audio
-presence, sharpness, dominant colours, and perceptual hashes for duplicate detection.
-Provenance comes from an optional sidecar file named <asset>.json, for example
-{"source": "...", "license": "..."}. Missing provenance is reported as "unknown".
+presence, sharpness, dominant colours, perceptual hashes for duplicate detection, and motion
+for video (scene changes per second, from ffmpeg's scene score).
 
-Ranking scores orientation, resolution, sharpness, and duration fit, then picks a
-diverse set that skips near-duplicates. Not implemented: semantic search (no embeddings).
-Motion intensity for video is not measured.
+Provenance and descriptive text come from an optional sidecar file named <asset>.json, for
+example {"source": "...", "license": "...", "tags": ["city", "night"], "description": "..."}.
+Missing provenance is reported as "unknown". Metrics are cached by content hash, so re-scanning
+an unchanged file does not re-run ffprobe, ffmpeg or the image analysis; sidecar text is always
+re-read.
+
+Ranking scores orientation, resolution, sharpness, duration fit and licence status, then picks a
+diverse set that skips near-duplicates. Text search (retrieval.py) is lexical, not semantic:
+it matches words in tags, descriptions and file names, with a small hand-written synonym list.
+There are no embeddings.
 """
 from __future__ import annotations
 
 import hashlib
 import json
 import math
+import re
 import subprocess
 from dataclasses import asdict, dataclass, field
 from fractions import Fraction
@@ -24,6 +31,13 @@ from PIL import Image, ImageFilter
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 VIDEO_EXT = {".mp4", ".mov", ".mkv", ".webm"}
 AUDIO_EXT = {".wav", ".mp3", ".m4a", ".aac", ".flac"}
+INDEX_VERSION = 2          # bump when the metric fields change; stale cache entries are ignored
+SCENE_THRESHOLD = 0.3      # ffmpeg scene score above which a frame counts as a cut
+MAX_TAGS = 50
+MAX_DESCRIPTION = 500
+# Metric fields stored in the cache. Provenance, tags and description are never cached.
+_METRIC_FIELDS = ("width", "height", "orientation", "duration", "fps", "has_audio", "sharpness",
+                  "brightness", "dominant_colors", "dhash", "motion_per_second", "notes")
 
 
 @dataclass
@@ -41,6 +55,9 @@ class Asset:
     brightness: float | None = None # mean luma 0-255, images only
     dominant_colors: list[str] = field(default_factory=list)
     dhash: str | None = None
+    motion_per_second: float | None = None  # scene cuts per second, video only
+    tags: list[str] = field(default_factory=list)
+    description: str = ""
     provenance: dict = field(default_factory=lambda: {"source": "unknown", "license": "unknown"})
     notes: list[str] = field(default_factory=list)
 
@@ -125,20 +142,63 @@ def _media_metrics(path: Path, asset: Asset) -> None:
         asset.notes.append("video without a video stream")
 
 
+def _clean_tags(raw) -> list[str]:
+    if isinstance(raw, str):
+        raw = re.split(r"[,;]", raw)
+    if not isinstance(raw, list):
+        return []
+    out: list[str] = []
+    for t in raw:
+        if isinstance(t, str) and t.strip():
+            tag = " ".join(t.lower().split())[:60]
+            if tag not in out:
+                out.append(tag)
+    return out[:MAX_TAGS]
+
+
 def _provenance(path: Path, asset: Asset) -> None:
     side = path.with_suffix(path.suffix + ".json")
     if side.exists():
         try:
             data = json.loads(side.read_text(encoding="utf-8"))
-            asset.provenance = {"source": data.get("source", "unknown"),
-                                "license": data.get("license", "unknown")}
+            if not isinstance(data, dict):
+                raise ValueError("sidecar must be a JSON object")
+            asset.provenance = {"source": str(data.get("source", "unknown")),
+                                "license": str(data.get("license", "unknown"))}
+            asset.tags = _clean_tags(data.get("tags", []))
+            asset.description = str(data.get("description", ""))[:MAX_DESCRIPTION]
         except (ValueError, OSError):
             asset.notes.append("provenance sidecar is unreadable")
     else:
         asset.notes.append("no provenance sidecar")
 
 
-def index_file(path: str | Path) -> Asset | None:
+def _motion(path: Path, asset: Asset) -> None:
+    """Scene cuts per second for video, from ffmpeg's scene score. The first frame is never a cut."""
+    if asset.kind != "video" or not asset.duration:
+        return
+    proc = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-nostats", "-i", str(path),
+         "-filter:v", f"select='gt(scene,{SCENE_THRESHOLD})',showinfo", "-an", "-f", "null", "-"],
+        capture_output=True, text=True)
+    if proc.returncode != 0:
+        asset.notes.append("motion analysis failed")
+        return
+    cuts = sum(1 for line in proc.stderr.splitlines() if "Parsed_showinfo" in line and "pts_time:" in line)
+    asset.motion_per_second = round(cuts / asset.duration, 3)
+
+
+def _cache_path(cache_dir: Path, sha: str) -> Path:
+    return cache_dir / f"{sha}.v{INDEX_VERSION}.json"
+
+
+def _apply_metrics(asset: Asset, metrics: dict) -> None:
+    for name in _METRIC_FIELDS:
+        if name in metrics:
+            setattr(asset, name, metrics[name])
+
+
+def index_file(path: str | Path, cache_dir: str | Path | None = None) -> Asset | None:
     p = Path(path)
     ext = p.suffix.lower()
     if ext in IMAGE_EXT:
@@ -150,22 +210,40 @@ def index_file(path: str | Path) -> Asset | None:
     else:
         return None
     asset = Asset(path=str(p), kind=kind, sha256=_sha256(p))
-    if kind == "image":
-        _image_metrics(p, asset)
+    cached = None
+    cache_file = _cache_path(Path(cache_dir), asset.sha256) if cache_dir else None
+    if cache_file is not None and cache_file.exists():
+        try:
+            cached = json.loads(cache_file.read_text(encoding="utf-8"))
+            if cached.get("kind") != kind:
+                cached = None
+        except (ValueError, OSError):
+            cached = None
+    if cached is not None:
+        _apply_metrics(asset, cached["metrics"])
     else:
-        _media_metrics(p, asset)
+        if kind == "image":
+            _image_metrics(p, asset)
+        else:
+            _media_metrics(p, asset)
+            _motion(p, asset)
+        if cache_file is not None:
+            cache_file.parent.mkdir(parents=True, exist_ok=True)
+            metrics = {name: getattr(asset, name) for name in _METRIC_FIELDS}
+            cache_file.write_text(json.dumps({"kind": kind, "metrics": metrics}, ensure_ascii=False),
+                                  encoding="utf-8")
     _provenance(p, asset)
     return asset
 
 
-def scan(folder: str | Path) -> list[Asset]:
+def scan(folder: str | Path, cache_dir: str | Path | None = None) -> list[Asset]:
     root = Path(folder)
     if not root.is_dir():
         raise NotADirectoryError(root)
     assets = []
     for p in sorted(root.rglob("*")):
         if p.is_file() and not p.name.endswith(".json"):
-            a = index_file(p)
+            a = index_file(p, cache_dir)
             if a is not None:
                 assets.append(a)
     return assets
@@ -197,11 +275,18 @@ def find_duplicates(assets: list[Asset], max_distance: int = 5) -> list[list[str
 
 
 def rank(assets: list[Asset], *, orientation: str | None = None, min_width: int = 0,
-         min_duration: float = 0.0, kind: str | None = None) -> list[tuple[float, Asset, list[str]]]:
-    """Score assets for a shot. Returns (score, asset, reasons), highest first."""
+         min_duration: float = 0.0, kind: str | None = None,
+         require_known_licence: bool = False) -> list[tuple[float, Asset, list[str]]]:
+    """Score assets for a shot. Returns (score, asset, reasons), highest first.
+
+    With require_known_licence=True, assets whose licence is "unknown" are dropped instead of
+    penalised. Use it when the output will be published.
+    """
     scored = []
     for a in assets:
         if kind and a.kind != kind:
+            continue
+        if require_known_licence and a.provenance.get("license", "unknown") == "unknown":
             continue
         score, reasons = 0.0, []
         if orientation:

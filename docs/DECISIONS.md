@@ -73,3 +73,17 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-016: Lexicon noise is fixed by removing terms, not by adding special cases
 - **Decision:** `stop` was removed from the urgency lexicon because it is also a noun. Stopwords were extended for topic keywords.
 - **Affects:** `uvs/narrative.py`.
+
+## DEC-017: Media retrieval is lexical, not semantic
+- **Decision:** `uvs/retrieval.py` matches scene words against sidecar tags, descriptions and file names, with a small hand-written synonym list. No embeddings.
+- **Reason:** No embedding model is installed, and downloading one needs authorisation. A lexical match can be explained word by word, which a model score cannot.
+- **Consequence:** A word with no listed synonym does not match, even if the meaning is close. Tests check this on purpose.
+
+## DEC-018: Motion is measured as scene cuts per second
+- **Decision:** `media_index` reports `motion_per_second` = ffmpeg scene-score cuts (threshold 0.3) divided by duration. The first frame is never counted.
+- **Reason:** It is cheap, reproducible, and verified on synthetic clips (static = 0, one hard cut = 1 cut).
+- **Not measured:** Subject motion and camera motion.
+
+## DEC-019: Cache holds media metrics only
+- **Decision:** The cache stores content-derived metrics keyed by SHA-256 and index version. Tags, description and provenance are re-read from the sidecar on every scan.
+- **Reason:** Sidecar text changes without changing the file. A cached licence would be a stale legal claim.

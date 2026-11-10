@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 3,
+  "current_phase": 4,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -80,9 +80,33 @@
       }
     },
     "3": {
-      "status": "NOT_STARTED",
       "title": "Semantic B-roll and media intelligence",
-      "note": "spec received; not started"
+      "status": "PARTIAL",
+      "verified": [
+        "sidecar tags and description read, sanitised (lowercase, de-duplicated, length-capped)",
+        "lexical retrieval over tags (weight 3), description (2), file name (1); IDF weighting",
+        "synonym matches are weaker (60 %) and labelled as synonyms; missing terms are reported",
+        "no match is invented: an unlisted synonym returns nothing (tested)",
+        "licence gate: unknown-licence assets excluded on request (query and plan)",
+        "near-duplicates (same hash or dHash within 5 bits) are not returned twice",
+        "scene B-roll assignment: each asset used once; unfilled scenes say why (used elsewhere, or below threshold)",
+        "generated visuals (chart, graphics, map, text, negative space) receive no footage",
+        "video motion = scene cuts per second, measured with ffmpeg on synthetic clips (static 0, one cut counted)",
+        "metric cache keyed by content hash; changed files re-measured; sidecar text never served from cache; unreadable cache ignored",
+        "CLI: python3 -m uvs.retrieval (query or plan mode)"
+      ],
+      "not_done": [
+        "embedding-based (semantic) search: no model installed; no model download authorised",
+        "visual content analysis of footage (subject, colour meaning, faces)",
+        "subject or camera motion; only scene-cut rate is measured",
+        "shot-level assignment (scene level only)",
+        "synonym table is small and English-only; Vietnamese has no synonym groups",
+        "no real-footage library tested"
+      ],
+      "tests": {
+        "added": 30,
+        "total_suite": 265
+      }
     },
     "4": {
       "status": "NOT_STARTED",
