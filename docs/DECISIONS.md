@@ -61,3 +61,15 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-013: Phase 1 scope
 - **Decision:** Scene graph nodes are modelled and tested, but not rendered. Nested sequences are not built. Keyframes are not attached to clips.
 - **Reason:** Rendering the scene graph belongs with the motion engine (Phase 4). Building it now would be untested rework.
+
+## DEC-014: Narrative planner is a separate layer over the director
+- **Decision:** `uvs/narrative.py` builds on `uvs/director.py` (scene segmentation, pacing, transitions) rather than replacing it. The director's API and output are unchanged.
+- **Reason:** Keeps the existing pipeline and its tests stable.
+
+## DEC-015: No audience inference
+- **Decision:** `audience` is reported as "not supplied" unless the caller passes it.
+- **Reason:** Guessing an audience from text is speculation; the spec asks for analysis, not invention.
+
+## DEC-016: Lexicon noise is fixed by removing terms, not by adding special cases
+- **Decision:** `stop` was removed from the urgency lexicon because it is also a noun. Stopwords were extended for topic keywords.
+- **Affects:** `uvs/narrative.py`.

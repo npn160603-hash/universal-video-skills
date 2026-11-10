@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 2,
+  "current_phase": 3,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -55,9 +55,29 @@
       }
     },
     "2": {
-      "status": "NOT_STARTED",
       "title": "AI director and narrative storytelling",
-      "note": "spec received; not started"
+      "status": "PARTIAL",
+      "verified": [
+        "script analysis fields (tone, hook, conflict, turning points, CTA detection)",
+        "4 storytelling structures chosen from cues; acts > scenes > beats > shots > phrases",
+        "emotion-based target shot lengths; fast editing not forced (tested)",
+        "all 11 shot types reachable by rules (detail as turning-point insert)",
+        "J, L, reaction, motivated cuts, continuity, rhythmic montage, insert shot",
+        "attention budget with concrete actions",
+        "decision record per scene with rejected alternatives and confidence",
+        "8 genres tested; input validation for timings and genre"
+      ],
+      "not_done": [
+        "match cut, parallel montage, cross-cutting",
+        "language-model reasoning",
+        "audience inference (reported only when supplied)",
+        "footage-based shot choice",
+        "Vietnamese emotion coverage beyond the director lexicon"
+      ],
+      "tests": {
+        "added": 36,
+        "total_suite": 235
+      }
     },
     "3": {
       "status": "NOT_STARTED",

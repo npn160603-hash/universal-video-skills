@@ -1,0 +1,666 @@
+{
+  "title": "Reflective demo",
+  "genre": "real_life_storytelling",
+  "duration": 17.042,
+  "analysis": {
+    "topic_keywords": [
+      "cook",
+      "gone",
+      "grandma"
+    ],
+    "genre": "real_life_storytelling",
+    "audience": "not supplied",
+    "tone": "reflective",
+    "objective": "move the viewer through a personal story",
+    "hook": {
+      "scene": "S01",
+      "text": "I remember the kitchen at home."
+    },
+    "conflict": {
+      "scene": "S03",
+      "text": "She is gone now, and I miss those quiet years."
+    },
+    "emotional_development": [
+      "warmth",
+      "warmth",
+      "grief",
+      "reflection",
+      "warmth",
+      "neutral"
+    ],
+    "key_events": {
+      "numeric_tokens": [],
+      "scenes_with_numbers": []
+    },
+    "turning_points": [
+      "S04"
+    ],
+    "resolution": {
+      "scene": "S06",
+      "text": "Subscribe for more stories."
+    },
+    "call_to_action": "Subscribe"
+  },
+  "structure": {
+    "name": "hook_context_conflict_revelation_payoff",
+    "beats": [
+      "Hook",
+      "Context",
+      "Conflict",
+      "Revelation",
+      "Payoff"
+    ]
+  },
+  "acts": [
+    {
+      "label": "Act 1: setup",
+      "scenes": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "label": "Act 2: confrontation",
+      "scenes": [
+        "S03",
+        "S04",
+        "S05"
+      ]
+    },
+    {
+      "label": "Act 3: resolution",
+      "scenes": [
+        "S06"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S01",
+      "start": 0.0,
+      "end": 2.458,
+      "text": "I remember the kitchen at home.",
+      "emotion": "warmth",
+      "intensity": 0.25,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": false,
+      "music_level": 0.22,
+      "sfx": [],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'warmth', 2.4 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom",
+        "music reduced to 0.22: keeps voiceover intelligible in an emotional scene"
+      ],
+      "act": "Act 1: setup",
+      "beat": "Hook",
+      "narrative_emotion": "warmth",
+      "target_shot_seconds": 4.0,
+      "visual": "close_up",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 0.0,
+          "end": 2.458,
+          "duration_s": 2.458,
+          "visual": "close_up",
+          "text": "I remember the kitchen at home."
+        }
+      ],
+      "attention": {
+        "load": 1.1,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.1,
+          "background": 0.3,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S01",
+        "selected": {
+          "visual": "close_up",
+          "shot_count": 1,
+          "shot_duration_s": 2.458,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "warmth (2 cues), pacing SLOW from genre 'real_life_storytelling' and 2.4 words/s; target shot 4.0 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'close_up' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.7,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S02",
+      "start": 2.5,
+      "end": 5.792,
+      "text": "My grandma used to cook there every morning.",
+      "emotion": "warmth",
+      "intensity": 0.25,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": false,
+      "music_level": 0.22,
+      "sfx": [],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'warmth', 2.4 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom",
+        "music reduced to 0.22: keeps voiceover intelligible in an emotional scene"
+      ],
+      "act": "Act 1: setup",
+      "beat": "Hook",
+      "narrative_emotion": "warmth",
+      "target_shot_seconds": 4.0,
+      "visual": "close_up",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 2.5,
+          "end": 5.792,
+          "duration_s": 3.292,
+          "visual": "close_up",
+          "text": "My grandma used to cook there every morning."
+        }
+      ],
+      "attention": {
+        "load": 1.09,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.69,
+          "movement": 0.1,
+          "background": 0.3,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S02",
+        "selected": {
+          "visual": "close_up",
+          "shot_count": 1,
+          "shot_duration_s": 3.292,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "warmth (1 cue), pacing SLOW from genre 'real_life_storytelling' and 2.4 words/s; target shot 4.0 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'close_up' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.6,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S03",
+      "start": 5.833,
+      "end": 9.958,
+      "text": "She is gone now, and I miss those quiet years.",
+      "emotion": "grief",
+      "intensity": 0.25,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": false,
+      "music_level": 0.22,
+      "sfx": [],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'grief', 2.4 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom",
+        "music reduced to 0.22: keeps voiceover intelligible in an emotional scene"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Context",
+      "narrative_emotion": "grief",
+      "target_shot_seconds": 4.5,
+      "visual": "close_up",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 5.833,
+          "end": 9.958,
+          "duration_s": 4.125,
+          "visual": "close_up",
+          "text": "She is gone now, and I miss those quiet years."
+        }
+      ],
+      "attention": {
+        "load": 1.09,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.69,
+          "movement": 0.1,
+          "background": 0.3,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S03",
+        "selected": {
+          "visual": "close_up",
+          "shot_count": 1,
+          "shot_duration_s": 4.125,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "grief (2 cues), pacing SLOW from genre 'real_life_storytelling' and 2.4 words/s; target shot 4.5 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'close_up' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.7,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S04",
+      "start": 10.0,
+      "end": 12.458,
+      "text": "But I think about her often.",
+      "emotion": "neutral",
+      "intensity": 0.5,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": true,
+      "music_level": 0.22,
+      "sfx": [
+        "soft_impact"
+      ],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'neutral', 2.4 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom",
+        "one soft impact at the turning point; no SFX elsewhere"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Conflict",
+      "narrative_emotion": "reflection",
+      "target_shot_seconds": 5.0,
+      "visual": "negative_space",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 10.0,
+          "end": 12.458,
+          "duration_s": 2.458,
+          "visual": "negative_space",
+          "text": "But I think about her often."
+        }
+      ],
+      "attention": {
+        "load": 0.9,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.1,
+          "background": 0.1,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S04",
+        "selected": {
+          "visual": "negative_space",
+          "shot_count": 1,
+          "shot_duration_s": 2.458,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "reflection (1 cue), pacing SLOW from genre 'real_life_storytelling' and 2.4 words/s; target shot 5.0 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'negative_space' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.7,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S05",
+      "start": 12.5,
+      "end": 15.375,
+      "text": "Maybe love stays, even when people leave.",
+      "emotion": "warmth",
+      "intensity": 0.25,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": false,
+      "music_level": 0.22,
+      "sfx": [],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'warmth', 2.4 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom",
+        "music reduced to 0.22: keeps voiceover intelligible in an emotional scene"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Revelation",
+      "narrative_emotion": "warmth",
+      "target_shot_seconds": 4.0,
+      "visual": "close_up",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 12.5,
+          "end": 15.375,
+          "duration_s": 2.875,
+          "visual": "close_up",
+          "text": "Maybe love stays, even when people leave."
+        }
+      ],
+      "attention": {
+        "load": 1.1,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.1,
+          "background": 0.3,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S05",
+        "selected": {
+          "visual": "close_up",
+          "shot_count": 1,
+          "shot_duration_s": 2.875,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "warmth (1 cue), pacing SLOW from genre 'real_life_storytelling' and 2.4 words/s; target shot 4.0 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'close_up' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.6,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S06",
+      "start": 15.417,
+      "end": 17.042,
+      "text": "Subscribe for more stories.",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "SLOW",
+      "transition": "dissolve",
+      "transition_duration": 0.5,
+      "turning_point": false,
+      "music_level": 0.22,
+      "sfx": [],
+      "caption_style": "emotional_storytelling",
+      "color_look": "desaturated_emotional",
+      "decisions": [
+        "slow pacing: real_life_storytelling, emotion 'neutral', 2.5 words/s",
+        "dissolve: restrained transition for an emotional scene; avoided whip/zoom"
+      ],
+      "act": "Act 3: resolution",
+      "beat": "Payoff",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 3.25,
+      "visual": "text_emphasis",
+      "motion": "static_hold",
+      "shots": [
+        {
+          "index": 1,
+          "start": 15.417,
+          "end": 17.042,
+          "duration_s": 1.625,
+          "visual": "text_emphasis",
+          "text": "Subscribe for more stories."
+        }
+      ],
+      "attention": {
+        "load": 1.4,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.1,
+          "background": 0.1,
+          "overlays": 0.5,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S06",
+        "selected": {
+          "visual": "text_emphasis",
+          "shot_count": 1,
+          "shot_duration_s": 1.625,
+          "motion": "static_hold",
+          "transition": "dissolve",
+          "music_level": 0.22
+        },
+        "emotional_justification": "neutral (0 cues), pacing SLOW from genre 'real_life_storytelling' and 2.5 words/s; target shot 3.2 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "b_roll",
+            "reason": "lost to 'text_emphasis' by priority; condition: emotional material"
+          },
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing SLOW calls for static_hold"
+          },
+          {
+            "option": "slow_drift",
+            "reason": "pacing SLOW calls for static_hold"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used"
+        ]
+      }
+    }
+  ],
+  "cinematic": {
+    "applied": [
+      {
+        "at_scene": "S02",
+        "at_seconds": 2.5,
+        "type": "j_cut",
+        "audio_leads_frames": 12,
+        "reason": "emotional dissolve: narration arrives before the picture changes"
+      },
+      {
+        "at_scene": "S02",
+        "at_seconds": 2.5,
+        "type": "continuity",
+        "reason": "same colour look 'desaturated_emotional' across the cut"
+      },
+      {
+        "at_scene": "S03",
+        "at_seconds": 5.833,
+        "type": "j_cut",
+        "audio_leads_frames": 12,
+        "reason": "emotional dissolve: narration arrives before the picture changes"
+      },
+      {
+        "at_scene": "S03",
+        "at_seconds": 5.833,
+        "type": "continuity",
+        "reason": "same colour look 'desaturated_emotional' across the cut"
+      },
+      {
+        "at_scene": "S04",
+        "at_seconds": 10.0,
+        "type": "j_cut",
+        "audio_leads_frames": 12,
+        "reason": "emotional dissolve: narration arrives before the picture changes"
+      },
+      {
+        "at_scene": "S04",
+        "at_seconds": 10.0,
+        "type": "continuity",
+        "reason": "same colour look 'desaturated_emotional' across the cut"
+      },
+      {
+        "at_scene": "S05",
+        "at_seconds": 12.5,
+        "type": "j_cut",
+        "audio_leads_frames": 12,
+        "reason": "emotional dissolve: narration arrives before the picture changes"
+      },
+      {
+        "at_scene": "S05",
+        "at_seconds": 12.5,
+        "type": "l_cut",
+        "audio_tail_seconds": 0.4,
+        "reason": "turning point: previous audio carries over the new picture"
+      },
+      {
+        "at_scene": "S05",
+        "at_seconds": 12.5,
+        "type": "continuity",
+        "reason": "same colour look 'desaturated_emotional' across the cut"
+      },
+      {
+        "at_scene": "S06",
+        "at_seconds": 15.417,
+        "type": "j_cut",
+        "audio_leads_frames": 12,
+        "reason": "emotional dissolve: narration arrives before the picture changes"
+      },
+      {
+        "at_scene": "S06",
+        "at_seconds": 15.417,
+        "type": "continuity",
+        "reason": "same colour look 'desaturated_emotional' across the cut"
+      }
+    ],
+    "not_applied": {
+      "match_cut": "needs visual similarity between shots; not available in this build",
+      "parallel_montage": "needs two or more storylines; the script analyser handles one",
+      "cross_cutting": "needs two or more storylines; not available in this build"
+    }
+  },
+  "summary": {
+    "scenes": 6,
+    "shots": 6,
+    "over_budget_scenes": [],
+    "visuals": {
+      "close_up": 4,
+      "text_emphasis": 1,
+      "negative_space": 1
+    },
+    "mean_target_shot_seconds": 4.12
+  }
+}

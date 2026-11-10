@@ -1,0 +1,652 @@
+{
+  "title": "Data demo",
+  "genre": "educational_explainer",
+  "duration": 17.042,
+  "analysis": {
+    "topic_keywords": [
+      "city",
+      "enrollment",
+      "faced"
+    ],
+    "genre": "educational_explainer",
+    "audience": "not supplied",
+    "tone": "neutral",
+    "objective": "explain a concept clearly",
+    "hook": {
+      "scene": "S01",
+      "text": "In 2023 the city built 40 new schools."
+    },
+    "conflict": {
+      "scene": "S03",
+      "text": "But only 25 percent of teachers were trained."
+    },
+    "emotional_development": [
+      "neutral",
+      "neutral",
+      "neutral",
+      "curiosity",
+      "neutral",
+      "neutral"
+    ],
+    "key_events": {
+      "numeric_tokens": [
+        "2023",
+        "40",
+        "12000",
+        "18000",
+        "25"
+      ],
+      "scenes_with_numbers": [
+        "S01",
+        "S02",
+        "S03"
+      ]
+    },
+    "turning_points": [
+      "S03"
+    ],
+    "resolution": {
+      "scene": "S06",
+      "text": "We learned that funding matters most."
+    },
+    "call_to_action": null
+  },
+  "structure": {
+    "name": "problem_struggle_discovery_change",
+    "beats": [
+      "Problem",
+      "Struggle",
+      "Discovery",
+      "Change"
+    ]
+  },
+  "acts": [
+    {
+      "label": "Act 1: setup",
+      "scenes": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "label": "Act 2: confrontation",
+      "scenes": [
+        "S03",
+        "S04",
+        "S05"
+      ]
+    },
+    {
+      "label": "Act 3: resolution",
+      "scenes": [
+        "S06"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S01",
+      "start": 0.0,
+      "end": 3.292,
+      "text": "In 2023 the city built 40 new schools.",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": false,
+      "music_level": 0.4,
+      "sfx": [],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene"
+      ],
+      "act": "Act 1: setup",
+      "beat": "Problem",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 2.6,
+      "visual": "chart",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 0.0,
+          "end": 3.292,
+          "duration_s": 3.292,
+          "visual": "chart",
+          "text": "In 2023 the city built 40 new schools."
+        }
+      ],
+      "attention": {
+        "load": 3.19,
+        "budget": 2.0,
+        "over_budget": true,
+        "components": {
+          "caption_density": 0.69,
+          "movement": 0.4,
+          "background": 0.6,
+          "overlays": 0.5,
+          "information": 1.0
+        },
+        "actions": [
+          "split the numbers across two scenes or shots"
+        ]
+      },
+      "decision": {
+        "scene_id": "S01",
+        "selected": {
+          "visual": "chart",
+          "shot_count": 1,
+          "shot_duration_s": 3.292,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "neutral (0 cues), pacing MEDIUM from genre 'educational_explainer' and 2.4 words/s; target shot 2.6 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used"
+        ]
+      }
+    },
+    {
+      "id": "S02",
+      "start": 3.333,
+      "end": 6.208,
+      "text": "Enrollment rose from 12000 to 18000 students.",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": false,
+      "music_level": 0.4,
+      "sfx": [],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene"
+      ],
+      "act": "Act 1: setup",
+      "beat": "Problem",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 2.6,
+      "visual": "chart",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 3.333,
+          "end": 6.208,
+          "duration_s": 2.875,
+          "visual": "chart",
+          "text": "Enrollment rose from 12000 to 18000 students."
+        }
+      ],
+      "attention": {
+        "load": 3.2,
+        "budget": 2.0,
+        "over_budget": true,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.4,
+          "background": 0.6,
+          "overlays": 0.5,
+          "information": 1.0
+        },
+        "actions": [
+          "split the numbers across two scenes or shots"
+        ]
+      },
+      "decision": {
+        "scene_id": "S02",
+        "selected": {
+          "visual": "chart",
+          "shot_count": 1,
+          "shot_duration_s": 2.875,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "neutral (0 cues), pacing MEDIUM from genre 'educational_explainer' and 2.4 words/s; target shot 2.6 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used"
+        ]
+      }
+    },
+    {
+      "id": "S03",
+      "start": 6.25,
+      "end": 9.542,
+      "text": "But only 25 percent of teachers were trained.",
+      "emotion": "neutral",
+      "intensity": 0.5,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": true,
+      "music_level": 0.4,
+      "sfx": [
+        "soft_impact"
+      ],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene",
+        "one soft impact at the turning point; no SFX elsewhere"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Struggle",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 2.6,
+      "visual": "medium",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 6.25,
+          "end": 9.542,
+          "duration_s": 3.292,
+          "visual": "medium",
+          "text": "But only 25 percent of teachers were trained."
+        }
+      ],
+      "attention": {
+        "load": 2.49,
+        "budget": 2.0,
+        "over_budget": true,
+        "components": {
+          "caption_density": 0.69,
+          "movement": 0.4,
+          "background": 0.4,
+          "overlays": 0.0,
+          "information": 1.0
+        },
+        "actions": [
+          "split the numbers across two scenes or shots"
+        ]
+      },
+      "decision": {
+        "scene_id": "S03",
+        "selected": {
+          "visual": "medium",
+          "shot_count": 1,
+          "shot_duration_s": 3.292,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "neutral (0 cues), pacing MEDIUM from genre 'educational_explainer' and 2.4 words/s; target shot 2.6 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used",
+          "no visual rule matched; medium shot is the fallback"
+        ]
+      }
+    },
+    {
+      "id": "S04",
+      "start": 9.583,
+      "end": 11.208,
+      "text": "Why did this happen?",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": false,
+      "music_level": 0.4,
+      "sfx": [],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Discovery",
+      "narrative_emotion": "curiosity",
+      "target_shot_seconds": 2.0,
+      "visual": "text_emphasis",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 9.583,
+          "end": 11.208,
+          "duration_s": 1.625,
+          "visual": "text_emphasis",
+          "text": "Why did this happen?"
+        }
+      ],
+      "attention": {
+        "load": 1.7,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.4,
+          "background": 0.1,
+          "overlays": 0.5,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S04",
+        "selected": {
+          "visual": "text_emphasis",
+          "shot_count": 1,
+          "shot_duration_s": 1.625,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "curiosity (1 cue), pacing MEDIUM from genre 'educational_explainer' and 2.5 words/s; target shot 2.0 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.6,
+        "uncertainty": []
+      }
+    },
+    {
+      "id": "S05",
+      "start": 11.25,
+      "end": 14.542,
+      "text": "Hanoi and Tokyo both faced the same problem.",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": false,
+      "music_level": 0.4,
+      "sfx": [],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene"
+      ],
+      "act": "Act 2: confrontation",
+      "beat": "Discovery",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 2.6,
+      "visual": "graphics",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 11.25,
+          "end": 14.542,
+          "duration_s": 3.292,
+          "visual": "graphics",
+          "text": "Hanoi and Tokyo both faced the same problem."
+        }
+      ],
+      "attention": {
+        "load": 2.49,
+        "budget": 2.0,
+        "over_budget": true,
+        "components": {
+          "caption_density": 0.69,
+          "movement": 0.4,
+          "background": 0.4,
+          "overlays": 0.0,
+          "information": 1.0
+        },
+        "actions": [
+          "split the numbers across two scenes or shots"
+        ]
+      },
+      "decision": {
+        "scene_id": "S05",
+        "selected": {
+          "visual": "graphics",
+          "shot_count": 1,
+          "shot_duration_s": 3.292,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "neutral (0 cues), pacing MEDIUM from genre 'educational_explainer' and 2.4 words/s; target shot 2.6 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "medium",
+            "reason": "default shot; a condition matched above it"
+          },
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used"
+        ]
+      }
+    },
+    {
+      "id": "S06",
+      "start": 14.583,
+      "end": 17.042,
+      "text": "We learned that funding matters most.",
+      "emotion": "neutral",
+      "intensity": 0.25,
+      "pacing": "MEDIUM",
+      "transition": "cut",
+      "transition_duration": 0.0,
+      "turning_point": false,
+      "music_level": 0.4,
+      "sfx": [],
+      "caption_style": "bold_shorts",
+      "color_look": "bright_educational",
+      "decisions": [
+        "hard cut: precise cut for an informational or fast scene"
+      ],
+      "act": "Act 3: resolution",
+      "beat": "Change",
+      "narrative_emotion": "neutral",
+      "target_shot_seconds": 2.6,
+      "visual": "medium",
+      "motion": "slow_drift",
+      "shots": [
+        {
+          "index": 1,
+          "start": 14.583,
+          "end": 17.042,
+          "duration_s": 2.459,
+          "visual": "medium",
+          "text": "We learned that funding matters most."
+        }
+      ],
+      "attention": {
+        "load": 1.5,
+        "budget": 2.0,
+        "over_budget": false,
+        "components": {
+          "caption_density": 0.7,
+          "movement": 0.4,
+          "background": 0.4,
+          "overlays": 0.0,
+          "information": 0.0
+        },
+        "actions": []
+      },
+      "decision": {
+        "scene_id": "S06",
+        "selected": {
+          "visual": "medium",
+          "shot_count": 1,
+          "shot_duration_s": 2.459,
+          "motion": "slow_drift",
+          "transition": "cut",
+          "music_level": 0.4
+        },
+        "emotional_justification": "neutral (0 cues), pacing MEDIUM from genre 'educational_explainer' and 2.4 words/s; target shot 2.6 s, 1 shot(s).",
+        "rejected_alternatives": [
+          {
+            "option": "push_in_fast",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          },
+          {
+            "option": "static_hold",
+            "reason": "pacing MEDIUM calls for slow_drift"
+          }
+        ],
+        "confidence": 0.45,
+        "uncertainty": [
+          "no emotional cue found; default pacing and visuals used",
+          "no visual rule matched; medium shot is the fallback"
+        ]
+      }
+    }
+  ],
+  "cinematic": {
+    "applied": [
+      {
+        "at_scene": "S02",
+        "at_seconds": 3.333,
+        "type": "motivated_cut",
+        "reason": "cut on a sentence end"
+      },
+      {
+        "at_scene": "S02",
+        "at_seconds": 3.333,
+        "type": "continuity",
+        "reason": "same colour look 'bright_educational' across the cut"
+      },
+      {
+        "at_scene": "S03",
+        "at_seconds": 6.25,
+        "type": "motivated_cut",
+        "reason": "cut on a sentence end"
+      },
+      {
+        "at_scene": "S03",
+        "at_seconds": 6.25,
+        "type": "continuity",
+        "reason": "same colour look 'bright_educational' across the cut"
+      },
+      {
+        "at_scene": "S04",
+        "at_seconds": 9.583,
+        "type": "l_cut",
+        "audio_tail_seconds": 0.4,
+        "reason": "turning point: previous audio carries over the new picture"
+      },
+      {
+        "at_scene": "S04",
+        "at_seconds": 9.583,
+        "type": "motivated_cut",
+        "reason": "cut on a sentence end"
+      },
+      {
+        "at_scene": "S04",
+        "at_seconds": 9.583,
+        "type": "continuity",
+        "reason": "same colour look 'bright_educational' across the cut"
+      },
+      {
+        "at_scene": "S05",
+        "at_seconds": 11.25,
+        "type": "motivated_cut",
+        "reason": "cut on a sentence end"
+      },
+      {
+        "at_scene": "S05",
+        "at_seconds": 11.25,
+        "type": "continuity",
+        "reason": "same colour look 'bright_educational' across the cut"
+      },
+      {
+        "at_scene": "S06",
+        "at_seconds": 14.583,
+        "type": "motivated_cut",
+        "reason": "cut on a sentence end"
+      },
+      {
+        "at_scene": "S06",
+        "at_seconds": 14.583,
+        "type": "continuity",
+        "reason": "same colour look 'bright_educational' across the cut"
+      }
+    ],
+    "not_applied": {
+      "match_cut": "needs visual similarity between shots; not available in this build",
+      "parallel_montage": "needs two or more storylines; the script analyser handles one",
+      "cross_cutting": "needs two or more storylines; not available in this build"
+    }
+  },
+  "summary": {
+    "scenes": 6,
+    "shots": 6,
+    "over_budget_scenes": [
+      "S01",
+      "S02",
+      "S03",
+      "S05"
+    ],
+    "visuals": {
+      "medium": 2,
+      "chart": 2,
+      "graphics": 1,
+      "text_emphasis": 1
+    },
+    "mean_target_shot_seconds": 2.5
+  }
+}
