@@ -1,0 +1,31 @@
+{
+  "_note": "Hand-authored placeholder timings for a synthetic pipeline test. Not from speech-to-text and not matched to real narration. The word 'dậy' is stored in decomposed Unicode (NFD) on purpose to test normalization.",
+  "words": [
+    {"text": "Mỗi", "start": 0.20, "end": 0.55},
+    {"text": "sáng,", "start": 0.55, "end": 0.95},
+    {"text": "bà", "start": 1.00, "end": 1.20},
+    {"text": "tôi", "start": 1.20, "end": 1.50},
+    {"text": "vẫn", "start": 1.50, "end": 1.80},
+    {"text": "dậy", "start": 1.80, "end": 2.10},
+    {"text": "lúc", "start": 2.10, "end": 2.40},
+    {"text": "5", "start": 2.40, "end": 2.80},
+    {"text": "giờ.", "start": 2.80, "end": 3.20},
+    {"text": "Bà", "start": 3.50, "end": 3.70},
+    {"text": "nấu", "start": 3.70, "end": 4.00},
+    {"text": "một", "start": 4.00, "end": 4.25},
+    {"text": "nồi", "start": 4.25, "end": 4.50},
+    {"text": "cháo", "start": 4.50, "end": 4.90},
+    {"text": "nhỏ,", "start": 4.90, "end": 5.30},
+    {"text": "rồi", "start": 5.35, "end": 5.60},
+    {"text": "ngồi", "start": 5.60, "end": 5.90},
+    {"text": "đợi.", "start": 5.90, "end": 6.40},
+    {"text": "Ai", "start": 6.90, "end": 7.10},
+    {"text": "cũng", "start": 7.10, "end": 7.35},
+    {"text": "có", "start": 7.35, "end": 7.55},
+    {"text": "một", "start": 7.55, "end": 7.75},
+    {"text": "buổi", "start": 7.75, "end": 8.05},
+    {"text": "sáng", "start": 8.05, "end": 8.35},
+    {"text": "như", "start": 8.35, "end": 8.55},
+    {"text": "vậy.", "start": 8.55, "end": 8.95}
+  ]
+}

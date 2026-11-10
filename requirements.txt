@@ -1,0 +1,2 @@
+# Python runtime. ffmpeg and ffprobe must also be on PATH (tested with ffmpeg 6.1.1, libx264, libass).
+Pillow>=10.1
