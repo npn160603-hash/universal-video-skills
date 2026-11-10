@@ -57,7 +57,7 @@ tests/render/           ffmpeg integration tests on real clips and renders
   No real speech, footage, or narration is used anywhere.
 - The four required demos from the master prompt are not produced. They need real footage, narration, and licensed
   map or chart data.
-- Not implemented: speech-to-text, TTS, maps, embedding-based (semantic) media search, skin-tone protection, shot matching,
+- Not implemented: speech-to-text, TTS, map labels and choropleths, embedding-based (semantic) media search, skin-tone protection, shot matching,
   multitrack compositing beyond overlays, motion graphics, and visual defect checks (flicker, blur, crop).
 - QA measures and reports. It does not repair anything automatically.
 - Creative quality is not evaluated. QA produces no creative scores.

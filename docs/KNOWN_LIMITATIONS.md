@@ -4,7 +4,7 @@ Status uses the contract legend. Each item was checked against code at `08e9aae`
 
 | # | Limitation (from the project brief) | Status | Current fact |
 |---|---|---|---|
-| 1 | No completed animated map engine | NOT_IMPLEMENTED | No map code, no geodata. |
+| 1 | No completed animated map engine | PARTIAL | Country shapes, projections, great-circle routes, markers, and camera moves are implemented and tested on Natural Earth 110 m. No labels, choropleths, or bundled data. |
 | 2 | No semantic media search | PARTIAL | Lexical search over sidecar tags, descriptions and file names, with a small synonym list. No embeddings, so no visual-content matching. |
 | 12 | Motion is measured as scene-cut rate only | PARTIAL | `motion_per_second` counts hard cuts. Subject and camera motion are not measured. |
 | 13 | Motion engine renders shapes, images and groups only | PARTIAL | Keyframes drive node transforms and render to MP4. Text, video, mask, camera, chart, map, particle and overlay nodes are refused, not drawn. |

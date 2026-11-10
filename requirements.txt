@@ -1,5 +1,6 @@
 # Runtime. ffmpeg and ffprobe must also be on PATH (tested with ffmpeg 6.1.1, libx264, libx265, libass).
 Pillow>=10.1
 jsonschema>=4.18   # project document validation (uvs/project.py)
+pyshp>=2.3         # country shapes for the map engine (uvs/maps.py); data is not bundled
 
 # Tests only.

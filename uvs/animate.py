@@ -19,6 +19,7 @@ from __future__ import annotations
 import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Iterable
 
 from PIL import Image, ImageDraw
 
@@ -229,40 +230,55 @@ def render_frame(graph: G.SceneGraph, anim: Animation, t: float, *, width: int, 
                          background=background).frame(t)
 
 
-def render_video(graph: G.SceneGraph, anim: Animation, out: str | Path, *, fps: float, duration: float,
-                 width: int, height: int, root: ProjectRoot | None = None,
-                 background: tuple[int, int, int] = (0, 0, 0), crf: int = 18) -> dict:
-    """Render frames and encode them to H.264 MP4. Width and height must be even (yuv420p)."""
+def encode_frames(out: str | Path, *, fps: float, width: int, height: int, frames: Iterable[Image.Image],
+                  crf: int = 18) -> int:
+    """Pipe RGB frames to ffmpeg and encode H.264 yuv420p MP4. Returns the number of frames written."""
     if width % 2 or height % 2:
         raise AnimationError("width and height must be even for yuv420p output")
-    renderer = FrameRenderer(graph, anim, width=width, height=height, root=root, background=background)
-    times = frame_times(fps, duration)
     out_path = Path(out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{width}x{height}", "-r", str(fps), "-i", "pipe:0",
            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", str(crf), "-movflags", "+faststart", str(out_path)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+    written = 0
     try:
-        for t in times:
-            proc.stdin.write(renderer.frame(t).tobytes())
+        for frame in frames:
+            if frame.size != (width, height):
+                raise AnimationError(f"frame is {frame.size}, expected {(width, height)}")
+            proc.stdin.write(frame.convert("RGB").tobytes())
+            written += 1
     except BrokenPipeError:
         pass  # ffmpeg exited early; its error is reported below
     except BaseException:
         proc.kill()
         proc.wait()
-        raise
-    finally:
+        proc.stderr.close()
         try:
             proc.stdin.close()
         except OSError:
             pass
+        raise
+    try:
+        proc.stdin.close()
+    except OSError:
+        pass
     stderr = proc.stderr.read().decode("utf-8", "replace")
     proc.stderr.close()
     code = proc.wait()
     if code != 0:
         raise AnimationError(f"ffmpeg failed ({code}): {stderr.strip()[-300:]}")
-    return {"path": str(out_path), "frames": len(times), "fps": fps, "width": width, "height": height}
+    return written
+
+
+def render_video(graph: G.SceneGraph, anim: Animation, out: str | Path, *, fps: float, duration: float,
+                 width: int, height: int, root: ProjectRoot | None = None,
+                 background: tuple[int, int, int] = (0, 0, 0), crf: int = 18) -> dict:
+    """Render frames and encode them to H.264 MP4. Width and height must be even (yuv420p)."""
+    renderer = FrameRenderer(graph, anim, width=width, height=height, root=root, background=background)
+    n = encode_frames(out, fps=fps, width=width, height=height,
+                      frames=(renderer.frame(t) for t in frame_times(fps, duration)), crf=crf)
+    return {"path": str(out), "frames": n, "fps": fps, "width": width, "height": height}
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 5,
+  "current_phase": 6,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -134,9 +134,30 @@
       }
     },
     "5": {
-      "status": "NOT_STARTED",
       "title": "Cinematic animated map engine",
-      "note": "spec received; not started"
+      "status": "PARTIAL",
+      "verified": [
+        "Natural Earth 110 m loaded (177 countries); coordinates validated; holes detected (South Africa / Lesotho)",
+        "antimeridian rings unwrapped; routes crossing 180 degrees split into segments",
+        "equirectangular and Mercator projections; uniform contain fit; axis direction checked",
+        "great-circle arcs lie on the sphere, hit their endpoints, bulge poleward (checked)",
+        "route reveal follows arc length (exact at half time with linear easing); absent before start",
+        "marker appears at its start time; highlighted country fills; hole drawn as sea",
+        "camera move: exact start and end, interpolated between; still camera does not move",
+        "real data: Vietnam highlighted at Hanoi, Laos keeps the base colour",
+        "route and marker encoded to MP4; frame count checked by ffprobe",
+        "demo rendered with real data; frames inspected visually (world view, mid-route, arrival)"
+      ],
+      "not_done": [
+        "text labels (country names are loaded but not drawn)",
+        "data-driven choropleth colours",
+        "globe (orthographic) projection",
+        "polygon simplification and tiling for large views or big files",
+        "no automated reference-image regression"
+      ],
+      "tests": {
+        "added": 33
+      }
     },
     "6": {
       "status": "NOT_STARTED",

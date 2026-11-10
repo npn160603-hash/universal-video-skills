@@ -96,3 +96,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-021: Unsupported node kinds are refused, not skipped
 - **Decision:** A node kind the renderer cannot draw raises `AnimationError` when the renderer is built.
 - **Reason:** A skipped node would produce a video with missing content and no warning.
+
+## DEC-022: Natural Earth data is loaded at run time, not bundled
+- **Decision:** `load_countries` reads a path given by the caller or `UVS_NATURAL_EARTH_SHP`. The shapefile is not committed.
+- **Reason:** The data is public domain, but the repository should carry only what it needs. The 110 m file is available from the `geopandas` wheel for anyone who needs it.
+
+## DEC-023: Map frames are drawn with PIL, not through the scene graph
+- **Decision:** `uvs/maps.py` draws its own frames. Only the encoder, `uvs.animate.encode_frames`, is shared.
+- **Reason:** Country polygons and great-circle routes do not fit the scene graph's node types. Keeping them separate avoids forcing a new node kind through the graph.
