@@ -37,3 +37,27 @@ Each entry: the decision, the reason, and what it affects.
 - **Decision:** Phase 0 changes docs only. Defects found in the audit are logged in `docs/audit/TECHNICAL_DEBT.md`, not fixed here.
 - **Reason:** Phase 0 is an audit. Fixes belong to the later phases, where the defect can be tested with the feature.
 - **Affects:** `TECHNICAL_DEBT.md` lists D-01 to D-17 with a suggested order.
+
+## DEC-008: Phase 0 closed; editor audit deferred by user
+- **Decision:** Phase 0 is VERIFIED against the user's completion list. The editor repo audit stays deferred until the user names the repo (user instruction, 2026-11-11).
+- **Affects:** `docs/PHASE_STATUS.json`, `docs/INTEGRATION_STATUS.md`.
+
+## DEC-009: Push of e84a7c7 authorised with conditions
+- **Decision:** Pushed `08e9aae..e84a7c7` as a fast-forward to `initial-pipeline`. Verified with `git ls-remote`. No force push, no change to main.
+- **Note:** The remote has no `main` branch (`git ls-remote` lists only `initial-pipeline`). Local `main` (eaceac8) is not on the remote.
+
+## DEC-010: Pre-push guard
+- **Decision:** `.githooks/pre-push` blocks pushes to main/master, branch deletion, and non-fast-forward updates. Enable with `git config core.hooksPath .githooks`.
+- **Tested:** four cases (main push refused, fast-forward allowed, rewrite refused, deletion refused).
+
+## DEC-011: jsonschema is a runtime dependency
+- **Decision:** `uvs/project.py` validates documents with jsonschema, so it moves from test-only to runtime in `requirements.txt`.
+- **Reason:** One validator for the schema file, rather than a hand-written copy that could drift.
+
+## DEC-012: Clip removal keeps neighbouring transitions
+- **Decision:** Removing a middle video clip keeps the successor's transition and reflows. Removing the first clip turns the new first clip into a cut.
+- **Reason:** The earlier design (turn successor into cut) could not be undone correctly, because the undo record did not cover the side effect.
+
+## DEC-013: Phase 1 scope
+- **Decision:** Scene graph nodes are modelled and tested, but not rendered. Nested sequences are not built. Keyframes are not attached to clips.
+- **Reason:** Rendering the scene graph belongs with the motion engine (Phase 4). Building it now would be untested rework.

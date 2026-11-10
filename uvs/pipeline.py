@@ -19,11 +19,11 @@ from fractions import Fraction
 from pathlib import Path
 
 from uvs import audio as A
+from uvs.backend import default_backend
 from uvs import captions as C
 from uvs import director as D
 from uvs import grade as G
 from uvs import qa as Q
-from uvs import render as R
 from uvs import timeline as T
 
 RATE = 48000
@@ -198,7 +198,8 @@ def run(spec_path: str | Path, out_dir: str | Path) -> dict:
     errors = [i for i in T.validate(tl) if i.level == "error"]
     if errors:
         raise ValueError("timeline errors: " + "; ".join(f"[{i.code}] {i.message}" for i in errors))
-    timeline_mp4 = stage("render_timeline", lambda: T.render(tl, out / "timeline.mp4"))
+    backend = default_backend()
+    timeline_mp4 = stage("render_timeline", lambda: backend.render_timeline(tl, out / "timeline.mp4"))
     applied_transitions = {"cut": 0, "dissolve": 0, "dip_black": 0}
     for c in tl.tracks[0].clips[1:]:
         applied_transitions[c.transition] += 1
@@ -210,7 +211,7 @@ def run(spec_path: str | Path, out_dir: str | Path) -> dict:
     decisions.append(f"style lock: look '{look}' at '{intensity}' applied to every scene")
 
     # 5. Captions burn-in (after grading, so captions keep their colours)
-    captioned = stage("burn_captions", lambda: R.burn_captions(graded, cap_files["ass"], out / "video_captioned.mp4"))
+    captioned = stage("burn_captions", lambda: backend.burn_captions(graded, cap_files["ass"], out / "video_captioned.mp4"))
 
     # 6. Audio
     if spec.get("voice"):

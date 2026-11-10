@@ -1,5 +1,5 @@
-# Runtime. ffmpeg and ffprobe must also be on PATH (tested with ffmpeg 6.1.1, libx264, libass).
+# Runtime. ffmpeg and ffprobe must also be on PATH (tested with ffmpeg 6.1.1, libx264, libx265, libass).
 Pillow>=10.1
+jsonschema>=4.18   # project document validation (uvs/project.py)
 
-# Tests only (schema validation).
-jsonschema>=4.18
+# Tests only.

@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://universal-video-skills.local/schemas/uvs_project.schema.json",
+  "title": "UVS project (version 1)",
+  "description": "Versioned project document. Structural checks here; semantic checks (references, ordering, aspect ratio) are in uvs/project.py.",
+  "type": "object",
+  "required": ["format", "schema_version", "project", "format_settings", "assets", "tracks"],
+  "additionalProperties": false,
+  "properties": {
+    "format": {"const": "uvs-project"},
+    "schema_version": {"const": 1},
+    "project": {
+      "type": "object",
+      "required": ["id", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 200}
+      }
+    },
+    "format_settings": {
+      "type": "object",
+      "required": ["width", "height", "fps", "aspect_ratio"],
+      "additionalProperties": false,
+      "properties": {
+        "width": {"type": "integer", "minimum": 16, "maximum": 7680},
+        "height": {"type": "integer", "minimum": 16, "maximum": 7680},
+        "fps": {"type": "string", "pattern": "^[1-9][0-9]{0,2}(/[1-9][0-9]{0,3})?$"},
+        "aspect_ratio": {"type": "string", "pattern": "^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$"}
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sample_rate": {"type": "integer", "enum": [44100, 48000]},
+        "target_lufs": {"type": "number", "minimum": -40, "maximum": -6},
+        "true_peak_dbtp": {"type": "number", "minimum": -9, "maximum": 0}
+      }
+    },
+    "editing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "style": {"type": "string"},
+        "genre": {"type": "string"}
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "objective": {"type": "string"},
+        "audience": {"type": "string"},
+        "tone": {"type": "string"}
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "start_frame", "end_frame"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "start_frame": {"type": "integer", "minimum": 0},
+          "end_frame": {"type": "integer", "minimum": 1},
+          "intent": {"type": "string"}
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "sha256", "kind", "portable"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$"},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$|^$"},
+          "kind": {"type": "string", "enum": ["video", "image", "audio", "unknown"]},
+          "portable": {"type": "boolean"}
+        }
+      }
+    },
+    "tracks": {
+      "type": "object",
+      "required": ["video", "audio", "graphics"],
+      "additionalProperties": false,
+      "properties": {
+        "video": {"type": "array", "items": {"$ref": "#/$defs/clip"}},
+        "audio": {"type": "array", "items": {"$ref": "#/$defs/clip"}},
+        "graphics": {"type": "array", "items": {"$ref": "#/$defs/clip"}}
+      }
+    },
+    "keyframes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target", "property", "keys"],
+        "additionalProperties": false,
+        "properties": {
+          "target": {"type": "string"},
+          "property": {"type": "string", "enum": ["x", "y", "scale", "rotation", "opacity", "blur", "crop"]},
+          "keys": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["frame", "value"],
+              "additionalProperties": false,
+              "properties": {
+                "frame": {"type": "integer", "minimum": 0},
+                "value": {"type": "number"},
+                "easing": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {"type": "string"},
+          "params": {"type": "object"}
+        }
+      }
+    },
+    "captions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "style": {"type": "string"},
+        "words_file": {"type": "string"}
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "codec": {"type": "string", "enum": ["h264", "h265"]},
+        "crf": {"type": "integer", "minimum": 0, "maximum": 51},
+        "preset": {"type": "string"}
+      }
+    },
+    "quality": {"type": "object"}
+  },
+  "$defs": {
+    "clip": {
+      "type": "object",
+      "required": ["id", "asset_id", "start_frame", "duration_frames"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$"},
+        "asset_id": {"type": "string"},
+        "start_frame": {"type": "integer", "minimum": 0},
+        "duration_frames": {"type": "integer", "minimum": 1},
+        "in_frame": {"type": "integer", "minimum": 0},
+        "transition": {"type": "string", "enum": ["cut", "dissolve", "dip_black"]},
+        "transition_frames": {"type": "integer", "minimum": 0},
+        "gain_db": {"type": "number"},
+        "x": {"type": "integer"},
+        "y": {"type": "integer"},
+        "scene_id": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

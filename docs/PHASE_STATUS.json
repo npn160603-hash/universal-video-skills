@@ -2,12 +2,18 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 0,
-  "status_legend": ["VERIFIED", "IMPLEMENTED_UNVERIFIED", "PARTIAL", "BLOCKED", "NOT_IMPLEMENTED"],
+  "current_phase": 2,
+  "status_legend": [
+    "VERIFIED",
+    "IMPLEMENTED_UNVERIFIED",
+    "PARTIAL",
+    "BLOCKED",
+    "NOT_IMPLEMENTED"
+  ],
   "phases": {
     "0": {
       "title": "Complete repository audit",
-      "status": "PARTIAL",
+      "status": "VERIFIED",
       "done": [
         "git state, branch, remote, clean tree verified",
         "existing test suite re-run: 125 OK",
@@ -15,25 +21,108 @@
         "docs/audit/* written (5 files)",
         "module and dependency inventory"
       ],
-      "blocked": [
-        "editor repo audit: editor repo not identified (see docs/INTEGRATION_STATUS.md)"
-      ],
-      "tests": {"run": 125, "passed": 125, "failed": 0}
+      "blocked": [],
+      "tests": {
+        "run": 125,
+        "passed": 125,
+        "failed": 0
+      },
+      "note": "Editor audit deferred by user decision (editor repo not named). Criteria in the user's list are met."
     },
-    "1": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "2": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "3": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "4": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "5": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "6": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "7": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "8": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "9": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "10": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "11": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "12": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "13": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "14": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"},
-    "15": {"status": "NOT_STARTED", "title": null, "note": "spec text not in the received prompt"}
+    "1": {
+      "title": "Core architecture and video pipeline",
+      "status": "PARTIAL",
+      "verified": [
+        "versioned project schema + validation + v0 migration",
+        "frame-exact timeline ops (NTSC)",
+        "non-destructive edit ops with exact undo",
+        "transition-chain reflow",
+        "scene boundary check",
+        "scene graph transforms, layer order, serialization",
+        "asset path safety, checksums, missing/changed media, LRU cache",
+        "RenderBackend (ffmpeg); framemd5 determinism and undo at pixel level"
+      ],
+      "not_done": [
+        "scene graph is not rendered by any backend",
+        "nested sequences",
+        "keyframes not attached to clips",
+        "only one render backend",
+        "byte-identical output not verified (decoded-frame identity is)"
+      ],
+      "tests": {
+        "added": 74,
+        "total_suite": 199
+      }
+    },
+    "2": {
+      "status": "NOT_STARTED",
+      "title": "AI director and narrative storytelling",
+      "note": "spec received; not started"
+    },
+    "3": {
+      "status": "NOT_STARTED",
+      "title": "Semantic B-roll and media intelligence",
+      "note": "spec received; not started"
+    },
+    "4": {
+      "status": "NOT_STARTED",
+      "title": "Motion engine",
+      "note": "spec received; not started"
+    },
+    "5": {
+      "status": "NOT_STARTED",
+      "title": "Cinematic animated map engine",
+      "note": "spec received; not started"
+    },
+    "6": {
+      "status": "NOT_STARTED",
+      "title": "Infographics and visual explainers",
+      "note": "spec received; not started"
+    },
+    "7": {
+      "status": "NOT_STARTED",
+      "title": "Speech, TTS, subtitles",
+      "note": "spec received; not started"
+    },
+    "8": {
+      "status": "NOT_STARTED",
+      "title": "Cinematic audio engine",
+      "note": "spec received; not started"
+    },
+    "9": {
+      "status": "NOT_STARTED",
+      "title": "Color grading, compositing, VFX",
+      "note": "spec received; not started"
+    },
+    "10": {
+      "status": "NOT_STARTED",
+      "title": "Ten video style presets",
+      "note": "spec received; not started"
+    },
+    "11": {
+      "status": "NOT_STARTED",
+      "title": "Intelligent editing decision engine",
+      "note": "spec received; not started"
+    },
+    "12": {
+      "status": "NOT_STARTED",
+      "title": "Local web editor integration (SDK and adapter)",
+      "note": "spec received; not started"
+    },
+    "13": {
+      "status": "NOT_STARTED",
+      "title": "Performance and export engine",
+      "note": "spec received; not started"
+    },
+    "14": {
+      "status": "NOT_STARTED",
+      "title": "Automated video QA",
+      "note": "spec received; not started"
+    },
+    "15": {
+      "status": "NOT_STARTED",
+      "title": "Demonstration and release candidate",
+      "note": "spec received; not started"
+    }
   }
 }
