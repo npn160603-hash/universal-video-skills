@@ -87,3 +87,12 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-019: Cache holds media metrics only
 - **Decision:** The cache stores content-derived metrics keyed by SHA-256 and index version. Tags, description and provenance are re-read from the sidecar on every scan.
 - **Reason:** Sidecar text changes without changing the file. A cached licence would be a stale legal claim.
+
+## DEC-020: Motion engine renders by compositing PIL layers, not ffmpeg filters
+- **Decision:** `uvs/animate.py` draws each node into a full-frame RGBA layer, transforms it with PIL's affine transform, and pipes raw frames to ffmpeg.
+- **Reason:** The scene graph's matrices map directly onto PIL's affine coefficients. Frames can be checked pixel by pixel in tests. An ffmpeg filter graph would be harder to verify at pixel level.
+- **Cost:** Full-frame layers are slow at large sizes. Tiling is a later optimisation.
+
+## DEC-021: Unsupported node kinds are refused, not skipped
+- **Decision:** A node kind the renderer cannot draw raises `AnimationError` when the renderer is built.
+- **Reason:** A skipped node would produce a video with missing content and no warning.

@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 4,
+  "current_phase": 5,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -109,9 +109,29 @@
       }
     },
     "4": {
-      "status": "NOT_STARTED",
       "title": "Motion engine",
-      "note": "spec received; not started"
+      "status": "PARTIAL",
+      "verified": [
+        "keyframe tracks (easing, hold before and after) applied to node x, y, rotation, scale, opacity",
+        "posed graph is a copy; input graph unchanged; posed graph validated",
+        "shape (rect, ellipse), image (through ProjectRoot, path escape refused), group nodes rendered",
+        "rotation direction, anchor, crop, opacity and parent-opacity multiplication checked on exact pixels",
+        "draw order checked; rendering is deterministic (byte-identical frames)",
+        "mutation check: removing the inverse mapping, opacity scaling, or world transform breaks the tests",
+        "end to end: animated graph encoded to H.264 MP4; frame count, duration, start and end positions decoded and checked",
+        "unsupported node kinds refused, not skipped; ffmpeg failure surfaced and no process left running",
+        "CLI and synthetic demo (examples/motion_demo)"
+      ],
+      "not_done": [
+        "text, video, mask, camera, chart, map, particle and overlay nodes are not rendered",
+        "keyframes on timeline clips (only scene-graph nodes)",
+        "motion blur; sub-pixel anti-aliasing beyond PIL bilinear",
+        "performance tuning (full-frame layers; no tiling or caching of transformed layers)",
+        "no reference-image regression set"
+      ],
+      "tests": {
+        "added": 25
+      }
     },
     "5": {
       "status": "NOT_STARTED",
