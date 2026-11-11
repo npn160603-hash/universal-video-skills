@@ -2,9 +2,9 @@
 
 ## Current state
 - Branch: `initial-pipeline`. Local commits ahead of `origin/initial-pipeline` (`e84a7c7`): `ea0dc39` (Phase 1), `2528e21` (Phase 2), `f8b0943` (Phase 3), `efb508c` (Phase 4), and the Phase 5 commit (the newest local commit). **Not pushed.** Push needs explicit authorisation (fast-forward only; verify with `git ls-remote`).
-- Current phase: **8** (audio), not started. Phases 2–7 are **PARTIAL**.
+- Current phase: **9** (colour), not started. Phases 2–8 are **PARTIAL**.
 - Blocked: editor repo audit and Phase 12 integration (repo not named). See `INTEGRATION_STATUS.md`.
-- Full suite: 405 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
+- Full suite: 426 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
 
 ## Phase status
 | Phase | Status | Summary |
@@ -17,13 +17,19 @@
 | 5 Animated maps | PARTIAL | Natural Earth 110 m countries, equirectangular and Mercator projections, great-circle routes, markers, camera moves. No labels or choropleths. Data not bundled. |
 | 6 Infographics | PARTIAL | 10 chart kinds, 6 timeline kinds, 7 diagram kinds (overlap-checked), 8 metaphors, animation controls, timeline integration. |
 | 7 Speech & captions | PARTIAL | Interfaces + capability detection, model-free TTS, silence/segmentation, 7 caption styles, typography, QA, Vietnamese. Real ASR/TTS BLOCKED. |
-| 8–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
+| 8 Sound design | PARTIAL | Voice chain (EQ, de-ess), tempo/beat detection (within 5% on clicks), beat-aligned cuts, emotional direction, gain automation, audio QA (LUFS, TP, clipping). |
+| 9–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
 
 ## Phase 3 changed files
 - `uvs/media_index.py`: sidecar `tags` and `description`; `motion_per_second`; metric cache (`index_file`/`scan` take `cache_dir`); `rank(require_known_licence=...)`.
 - `uvs/retrieval.py` (new): lexical search, synonym groups, plan B-roll assignment, CLI.
 - `tests/unit/test_retrieval.py` (new, 20 tests), `tests/render/test_media_motion.py` (new, 10 tests: motion on real clips, cache, CLI).
 - `docs/api/media-retrieval.md`, `docs/PHASE_STATUS.json`, `docs/DECISIONS.md` (DEC-017..019), `docs/KNOWN_LIMITATIONS.md`, `README.md`.
+
+## Phase 8 changed files
+- `uvs/audio_intel.py` (new), `uvs/audio.py` (EQ + de-ess in voice chain).
+- `tests/unit/test_audio_intel.py` (13), `tests/render/test_audio_phase8.py` (8).
+- `docs/api/audio.md`, DEC-031..032, capability matrix Phase 8 rows.
 
 ## Phase 7 changed files
 - `uvs/speech.py` (new), `uvs/typography.py` (new), `uvs/captions.py` (3 styles + background field, ASS BorderStyle).
@@ -63,5 +69,5 @@ See `docs/DECISIONS.md`.
 4. The master prompt was truncated in what was received (Phases 1–15 spec ends mid-Phase-0). Work follows the phase titles and the user's stated constraints.
 
 ## Next executable tasks
-1. Phase 8: audio — voice chain (EQ, HPF, compression, loudnorm, de-ess), beat/tempo detection on synthetic click tracks, ducking, layered mix, audio QA (LUFS, true peak, clipping).
-2. Phase 9 colour, Phase 10 styles (fix D-01), Phase 11 decision engine, Phase 12 SDK, Phase 13 export, Phase 14 QA, Phase 15 demos.
+1. Phase 9: colour — exposure/contrast/WB/saturation/curves/lift-gamma-gain, shot matching, 10 original looks, compositing primitives, colour-analysis reports. Build on uvs/grade.py.
+2. Phase 10 styles (fix D-01), Phase 11 decision engine, Phase 12 SDK, Phase 13 export, Phase 14 QA, Phase 15 demos.

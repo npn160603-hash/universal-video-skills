@@ -91,3 +91,13 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Speech | External-timestamp fallback | VERIFIED | `test_speech.py` |
 | Speech | Real ASR / real speech TTS | BLOCKED | no engine installed; interfaces ready |
 | Captions | Typography effects, layout QA, Vietnamese | VERIFIED | `test_caption_styles.py`; frames inspected |
+
+## Phase 8 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Audio | Voice chain (HPF, EQ, compression, de-ess, loudnorm, limiter) | VERIFIED | mix hits -16 LUFS (`test_audio_phase8.py`) |
+| Audio | Tempo/beat detection | VERIFIED | within 5% on 90/120/140 BPM clicks |
+| Audio | Beat-aligned cuts, gain automation | VERIFIED | `test_audio_intel.py` |
+| Audio | Emotional sound direction | VERIFIED | `test_audio_intel.py` |
+| Audio | Audio QA (LUFS, TP, clipping, silence, balance) | VERIFIED | real measurements (`test_audio_phase8.py`) |

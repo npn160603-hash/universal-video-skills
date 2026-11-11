@@ -43,7 +43,7 @@ def _check(clips: Sequence[AudioClip]) -> None:
             raise ValueError(f"bad timing for {c.path}")
 
 
-def build_mix_graph(clips: Sequence[AudioClip], *, denoise: bool = False,
+def build_mix_graph(clips: Sequence[AudioClip], *, denoise: bool = False, deess: bool = False,
                     duck_threshold: float = 0.02, duck_ratio: float = 6.0) -> tuple[list[str], str, str]:
     """Return (ffmpeg input args, filter_complex, output label)."""
     _check(clips)
@@ -64,7 +64,13 @@ def build_mix_graph(clips: Sequence[AudioClip], *, denoise: bool = False,
             chain.append("highpass=f=80")
             if denoise:
                 chain.append("afftdn=nf=-25")
+            # presence EQ: gentle low-mud cut and a presence lift for clarity
+            chain.append("equalizer=f=250:t=q:w=1.0:g=-2")
+            chain.append("equalizer=f=4000:t=q:w=1.0:g=2")
             chain.append("acompressor=threshold=-20dB:ratio=3:attack=20:release=250")
+            if deess:
+                # de-ess: tame sibilance around 6-7 kHz with a narrow dynamic dip
+                chain.append("deesser=i=0.4")
         gain = CATEGORIES[c.category] if c.gain_db is None else c.gain_db
         chain.append(f"volume={gain}dB")
         if c.start > 0:

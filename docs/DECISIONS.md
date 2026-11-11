@@ -133,3 +133,12 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-030: Vietnamese text is NFC-normalized and measured with the real font
 - **Decision:** Diacritic detection decomposes (NFD) to catch precomposed and combining forms; QA warns on non-NFC words.
 - **Reason:** libass renders NFC reliably; detecting diacritics only in one form would miss half the cases.
+
+## DEC-031: Tempo from onset inter-onset intervals, not autocorrelation
+- **Decision:** estimate_tempo uses the median inter-onset interval of detected onsets.
+- **Reason:** On click tracks, autocorrelation produced octave errors (140 BPM read as 70). Median IOI is accurate within 5% on 90/120/140 BPM and is honest about complex material (confidence score).
+- **Limit:** Verified on click tracks; polyphonic music may still mis-track.
+
+## DEC-032: Audio QA measures, never estimates
+- **Decision:** Loudness/true-peak via ffmpeg ebur128; clipping by scanning decoded samples; silence via silencedetect.
+- **Reason:** The directive forbids invented numbers. Every QA figure comes from a tool run on the actual audio.

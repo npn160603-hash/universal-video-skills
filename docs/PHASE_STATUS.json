@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 8,
+  "current_phase": 9,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -211,9 +211,27 @@
       }
     },
     "8": {
-      "status": "NOT_STARTED",
-      "title": "Cinematic audio engine",
-      "note": "spec received; not started"
+      "title": "Cinematic sound design",
+      "status": "PARTIAL",
+      "verified": [
+        "voice chain: high-pass, optional denoise, presence EQ (mud cut + presence lift), compression, optional de-ess, loudnorm two-pass, true-peak limiter",
+        "tempo estimation from onset inter-onset intervals, verified within 5% on 90/120/140 BPM click tracks (confidence >0.8)",
+        "beat detection (onset times) evenly spaced at 120 BPM; beat-aligned cut snapping within max_shift",
+        "energy envelope (RMS over time) from decoded PCM",
+        "emotional sound direction map (reflective/suspense/educational/inspirational/neutral) with gains, duck ratio, silence",
+        "gain automation: piecewise-linear dB interpolation and an ffmpeg volume expression",
+        "layered mix across VOICE/MUSIC/SFX/AMBIENCE with sidechain ducking (existing), mixes to target LUFS (verified -16)",
+        "audio QA: integrated loudness, LRA, true peak (ebur128), clipping (sample scan), silence spans, voice/music balance — real measurements"
+      ],
+      "not_done": [
+        "source separation and speech-enhancement models",
+        "beat tracking on real polyphonic music (verified on click tracks only; octave errors possible on complex material)",
+        "automatic music-driven edit (beat_aligned_cuts snaps supplied cuts; it does not choose them)",
+        "music crossfade helper is via existing mix/adelay, not a dedicated crossfade API"
+      ],
+      "tests": {
+        "added": 21
+      }
     },
     "9": {
       "status": "NOT_STARTED",
