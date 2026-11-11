@@ -182,3 +182,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-042: The render cache keys finished files by a content hash of their inputs
 - **Decision:** RenderCache.get_or_render renders to an atomic temp file and reuses an existing output for the same key.
 - **Reason:** The spec asks for a render cache and reusable asset processing. An unchanged render is reused; the key is explicit so the caller controls invalidation.
+
+## DEC-043: Repairs work on a copy and are bounded
+- **Decision:** uvs/autoqa repairs write a new file or a deep-copied plan; the original is never modified. Repair loops have a max pass/try count.
+- **Reason:** The spec requires preserving the original, bounded retries and no infinite loop. Verified: loudness repair keeps the source; timing repair leaves the input plan unchanged.
+
+## DEC-044: Creative scores are labelled heuristic
+- **Decision:** creative_heuristics returns HeuristicScore and the report labels them "judgement, not measurement".
+- **Reason:** The spec requires creative scoring to be clearly marked as heuristic, separate from measured QA.

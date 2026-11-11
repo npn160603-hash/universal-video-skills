@@ -150,3 +150,13 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Export | Profiles 9:16/16:9/1:1 x 720p/1080p, H.264/H.265, AAC | VERIFIED | correct dims, decode valid |
 | Export | Render cache | VERIFIED | reuse verified (render runs once) |
 | Export | Benchmark (duration/size/fps/decode) | VERIFIED | `EXPORT_BENCHMARK.json` |
+
+## Phase 14 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| QA | Visual detection (black, frozen) | VERIFIED | detected on broken videos (`test_autoqa_phase14.py`) |
+| QA | Timeline QA (gaps/overlaps/durations) | VERIFIED | `test_autoqa.py` |
+| QA | Creative heuristics (labelled) | VERIFIED | `test_autoqa.py` |
+| QA | Safe repairs (bounded, copy) | VERIFIED | loudness -51.8->-14; original preserved |
+| QA | JSON + Markdown reports | VERIFIED | `write_reports` |

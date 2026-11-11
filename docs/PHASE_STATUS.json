@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 14,
+  "current_phase": 15,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -345,9 +345,25 @@
       }
     },
     "14": {
-      "status": "NOT_STARTED",
-      "title": "Automated video QA",
-      "note": "spec received; not started"
+      "title": "Automated video quality assurance",
+      "status": "VERIFIED",
+      "verified": [
+        "visual QA via ffmpeg: black frames (blackdetect) and frozen frames (freezedetect) detected on deliberately broken videos; format/dimension/fps checks",
+        "audio QA: clipping, true peak, silence, loudness (existing qa.py detectors, real measurements)",
+        "timeline QA over an edit plan: gaps, overlaps, non-positive durations detected",
+        "creative heuristics (labelled judgement, not measurement): scene diversity, transition variety, pacing, caption/graphic density",
+        "safe repairs on a COPY, original never modified: loudness correction (-51.8 -> -14.0 LUFS verified), timeline timing reflow, caption margin increase",
+        "repairs are bounded (max passes / max tries) so the repair loop can never run forever; in-place loudness repair refused",
+        "JSON and Markdown reports with overall status"
+      ],
+      "not_done": [
+        "flicker, excessive-blur and broken-overlay detection are not implemented as distinct checks (black/freeze/format are)",
+        "lip-sync / A-V sync drift is not measured",
+        "repairs cover loudness, timing and caption margins; not every defect has an auto-repair"
+      ],
+      "tests": {
+        "added": 16
+      }
     },
     "15": {
       "status": "NOT_STARTED",

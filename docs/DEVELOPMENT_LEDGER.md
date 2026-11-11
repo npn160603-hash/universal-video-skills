@@ -2,9 +2,9 @@
 
 ## Current state
 - Branch: `initial-pipeline`. Local commits ahead of `origin/initial-pipeline` (`e84a7c7`): `ea0dc39` (Phase 1), `2528e21` (Phase 2), `f8b0943` (Phase 3), `efb508c` (Phase 4), and the Phase 5 commit (the newest local commit). **Not pushed.** Push needs explicit authorisation (fast-forward only; verify with `git ls-remote`).
-- Current phase: **14** (QA), not started. Phases 2–9,12 PARTIAL; Phases 10,11,13 VERIFIED. D-01 resolved. Editor integration BLOCKED.
+- Current phase: **15** (demos + final report). Phases 2–9,12 PARTIAL; Phases 10,11,13,14 VERIFIED. D-01 resolved. Editor integration BLOCKED.
 - Blocked: editor repo audit and Phase 12 integration (repo not named). See `INTEGRATION_STATUS.md`.
-- Full suite: 518 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
+- Full suite: 534 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
 
 ## Phase status
 | Phase | Status | Summary |
@@ -23,13 +23,19 @@
 | 11 Decision engine | VERIFIED | 12 decisions + 9 scores per scene, enforced critical rules, decision records, overrides preserved on regeneration. |
 | 12 Local API / SDK | PARTIAL | Core API, job manager, loopback JSON server, Python SDK, TS client, reference harness. Editor integration BLOCKED. |
 | 13 Export & perf | VERIFIED | Hardware/encoder detection (verified), export profiles (3 aspects x 2 res, H.264/H.265, AAC), render cache, benchmark report. |
-| 14–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
+| 14 Automated QA | VERIFIED | Visual (black/frozen) + timeline + audio QA, creative heuristics, bounded safe repairs (copy), JSON+MD reports. |
+| 15 | NOT_STARTED | See `PHASE_STATUS.json`. |
 
 ## Phase 3 changed files
 - `uvs/media_index.py`: sidecar `tags` and `description`; `motion_per_second`; metric cache (`index_file`/`scan` take `cache_dir`); `rank(require_known_licence=...)`.
 - `uvs/retrieval.py` (new): lexical search, synonym groups, plan B-roll assignment, CLI.
 - `tests/unit/test_retrieval.py` (new, 20 tests), `tests/render/test_media_motion.py` (new, 10 tests: motion on real clips, cache, CLI).
 - `docs/api/media-retrieval.md`, `docs/PHASE_STATUS.json`, `docs/DECISIONS.md` (DEC-017..019), `docs/KNOWN_LIMITATIONS.md`, `README.md`.
+
+## Phase 14 changed files
+- `uvs/autoqa.py` (new).
+- `tests/unit/test_autoqa.py` (13), `tests/render/test_autoqa_phase14.py` (3).
+- `docs/api/autoqa.md`, DEC-043..044, capability matrix Phase 14 rows.
 
 ## Phase 13 changed files
 - `uvs/export.py` (new), `docs/audit/EXPORT_BENCHMARK.json` (measured).
@@ -100,5 +106,6 @@ See `docs/DECISIONS.md`.
 4. The master prompt was truncated in what was received (Phases 1–15 spec ends mid-Phase-0). Work follows the phase titles and the user's stated constraints.
 
 ## Next executable tasks
-1. Phase 14: automated QA — visual (black/frozen/blur/caption clip), timeline (gaps/overlaps/durations), audio (clipping/silence/loudness/balance), creative heuristics; safe repairs on copies with bounded retries; JSON + Markdown reports; demonstrate on defective videos.
-2. Phase 15 demos + final Vietnamese report. D-02 and D-07 still open.
+1. Phase 15: render demos A-F (label technical where media is synthetic; Demo B uses real Natural Earth map), validate each (file, metadata, frames, QA), then the eight Vietnamese FINAL_* reports.
+2. D-02 (spec validation) and D-07 (font fallback) still open — address or document in the final report.
+3. Do not merge, publish, deploy or push. Present the final approval package.
