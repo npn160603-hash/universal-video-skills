@@ -366,9 +366,23 @@
       }
     },
     "15": {
-      "status": "NOT_STARTED",
-      "title": "Demonstration and release candidate",
-      "note": "spec received; not started"
+      "title": "Professional demos and final validation",
+      "status": "PARTIAL",
+      "verified": [
+        "6 demos render to valid A/V MP4s (A emotional, B travel, C psychology, D educational, E lifestyle, F motion graphics)",
+        "Demo B (Hanoi->Tokyo) uses REAL Natural Earth geodata: real map, great-circle route, markers, camera move (technical=False)",
+        "Demo D composes real charts + a real process diagram; Demo F is the real motion engine (keyframes, easing, transform hierarchy, compositing)",
+        "each demo validated: file exists, metadata (dimensions/duration), representative frames inspected, QA run (5 pass, 1 warn)",
+        "synthetic audio bed added and labelled a stand-in; demos needing real footage are labelled TECHNICAL"
+      ],
+      "not_done": [
+        "demos A, C, E use generated metaphor visuals and synthetic audio, not real footage/narration (labelled technical)",
+        "no real licensed music or voiceover (none available/authorised)",
+        "demos are demonstration-scale (3-6s), not full 30-60s cuts, to keep render time reasonable on 2 cores"
+      ],
+      "tests": {
+        "added": 13
+      }
     }
   }
 }

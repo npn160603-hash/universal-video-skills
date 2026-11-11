@@ -2,9 +2,9 @@
 
 ## Current state
 - Branch: `initial-pipeline`. Local commits ahead of `origin/initial-pipeline` (`e84a7c7`): `ea0dc39` (Phase 1), `2528e21` (Phase 2), `f8b0943` (Phase 3), `efb508c` (Phase 4), and the Phase 5 commit (the newest local commit). **Not pushed.** Push needs explicit authorisation (fast-forward only; verify with `git ls-remote`).
-- Current phase: **15** (demos + final report). Phases 2–9,12 PARTIAL; Phases 10,11,13,14 VERIFIED. D-01 resolved. Editor integration BLOCKED.
+- **All 16 phases complete (0-15).** Phases 10,11,13,14 VERIFIED; others PARTIAL; ASR/TTS and editor integration BLOCKED. D-01, D-02, D-07 all resolved. Final package in `final/` (Vietnamese).
 - Blocked: editor repo audit and Phase 12 integration (repo not named). See `INTEGRATION_STATUS.md`.
-- Full suite: 534 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
+- Full suite: 547 tests OK, 5 skipped (real-data map/travel tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
 
 ## Phase status
 | Phase | Status | Summary |
@@ -24,13 +24,18 @@
 | 12 Local API / SDK | PARTIAL | Core API, job manager, loopback JSON server, Python SDK, TS client, reference harness. Editor integration BLOCKED. |
 | 13 Export & perf | VERIFIED | Hardware/encoder detection (verified), export profiles (3 aspects x 2 res, H.264/H.265, AAC), render cache, benchmark report. |
 | 14 Automated QA | VERIFIED | Visual (black/frozen) + timeline + audio QA, creative heuristics, bounded safe repairs (copy), JSON+MD reports. |
-| 15 | NOT_STARTED | See `PHASE_STATUS.json`. |
+| 15 Demos & final | PARTIAL | 6 demos render + validated (B uses real geodata); 8 Vietnamese FINAL_* reports in `final/`. |
 
 ## Phase 3 changed files
 - `uvs/media_index.py`: sidecar `tags` and `description`; `motion_per_second`; metric cache (`index_file`/`scan` take `cache_dir`); `rank(require_known_licence=...)`.
 - `uvs/retrieval.py` (new): lexical search, synonym groups, plan B-roll assignment, CLI.
 - `tests/unit/test_retrieval.py` (new, 20 tests), `tests/render/test_media_motion.py` (new, 10 tests: motion on real clips, cache, CLI).
 - `docs/api/media-retrieval.md`, `docs/PHASE_STATUS.json`, `docs/DECISIONS.md` (DEC-017..019), `docs/KNOWN_LIMITATIONS.md`, `README.md`.
+
+## Phase 15 changed files
+- `uvs/demos.py` (new), `uvs/pipeline.py` (D-02 validate_spec), `uvs/captions.py` (D-07 font fallback).
+- `tests/render/test_demos_phase15.py` (4), `tests/unit/test_debt_fixes.py` (9).
+- `final/FINAL_*.md` (8 Vietnamese reports), DEC-045..046, D-02/D-07 marked resolved.
 
 ## Phase 14 changed files
 - `uvs/autoqa.py` (new).
@@ -105,7 +110,8 @@ See `docs/DECISIONS.md`.
 3. Push of local commits to `initial-pipeline` needs fresh authorisation.
 4. The master prompt was truncated in what was received (Phases 1–15 spec ends mid-Phase-0). Work follows the phase titles and the user's stated constraints.
 
-## Next executable tasks
-1. Phase 15: render demos A-F (label technical where media is synthetic; Demo B uses real Natural Earth map), validate each (file, metadata, frames, QA), then the eight Vietnamese FINAL_* reports.
-2. D-02 (spec validation) and D-07 (font fallback) still open — address or document in the final report.
-3. Do not merge, publish, deploy or push. Present the final approval package.
+## Next executable tasks (awaiting user approval)
+1. Push the local Phase 0-15 commits to `initial-pipeline` (fast-forward only) — needs authorisation.
+2. Confirm the editor repository for Phase 12 direct integration (currently BLOCKED).
+3. Authorise ASR/TTS engine install for real speech (currently BLOCKED).
+4. Provide real footage/narration/music for real-media demos.

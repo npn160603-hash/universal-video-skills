@@ -153,9 +153,38 @@ def _mux(video: Path, audio_file: Path, out: Path) -> Path:
     return out
 
 
+def validate_spec(spec: dict) -> list[str]:
+    """Validate a pipeline spec before running (fixes D-02). Returns a list of problems."""
+    problems: list[str] = []
+    if "words" not in spec:
+        problems.append("spec is missing 'words'")
+    genre = spec.get("genre")
+    if genre is None:
+        problems.append("spec is missing 'genre'")
+    elif genre not in D.GENRES:
+        problems.append(f"unknown genre {genre!r}; choose from {sorted(D.GENRES)}")
+    for key in ("width", "height", "fps"):
+        if key in spec:
+            try:
+                if int(spec[key]) <= 0:
+                    problems.append(f"{key} must be positive")
+            except (TypeError, ValueError):
+                problems.append(f"{key} must be an integer")
+    if "style" in spec:
+        from uvs.styles import STYLES
+        if spec["style"] not in STYLES:
+            problems.append(f"unknown style {spec['style']!r}; choose from {sorted(STYLES)}")
+    if "footage" in spec and not isinstance(spec["footage"], list):
+        problems.append("'footage' must be a list of paths")
+    return problems
+
+
 def run(spec_path: str | Path, out_dir: str | Path) -> dict:
     spec_path = Path(spec_path)
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    problems = validate_spec(spec)
+    if problems:
+        raise ValueError("invalid spec: " + "; ".join(problems))
     base = spec_path.parent
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)

@@ -155,11 +155,39 @@ class Issue:
 # Font measurement
 # ---------------------------------------------------------------------------
 
+_FONT_SEARCH_DIRS = ("/usr/share/fonts", "/usr/local/share/fonts",
+                     str(Path.home() / ".fonts"), str(Path.home() / ".local/share/fonts"))
+
+
+def _font_file_on_disk(family: str, bold: bool) -> str | None:
+    """Find a font file for the family by scanning common font directories (D-07 fallback).
+
+    Used when fc-match is unavailable, so width measurement uses the same family libass renders
+    rather than silently dropping to Pillow's bitmap default.
+    """
+    style = "Bold" if bold else "Regular"
+    want = f"{family}-{style}".lower()
+    fallback = f"{family}-regular".lower()
+    found_fallback = None
+    for base in _FONT_SEARCH_DIRS:
+        root = Path(base)
+        if not root.is_dir():
+            continue
+        for ext in ("*.otf", "*.ttf"):
+            for f in root.rglob(ext):
+                stem = f.stem.lower()
+                if stem == want:
+                    return str(f)
+                if stem == fallback and found_fallback is None:
+                    found_fallback = str(f)
+    return found_fallback
+
+
 @lru_cache(maxsize=None)
 def resolve_font_file(family: str, bold: bool) -> str | None:
-    """Ask fontconfig for the font file behind a family and weight."""
+    """Ask fontconfig for the font file behind a family and weight; scan disk if fc-match is absent."""
     if not shutil.which("fc-match"):
-        return None
+        return _font_file_on_disk(family, bold)
     style = "Bold" if bold else "Regular"
     try:
         out = subprocess.run(
@@ -167,8 +195,8 @@ def resolve_font_file(family: str, bold: bool) -> str | None:
             capture_output=True, text=True, check=True, timeout=10,
         ).stdout.strip()
     except (subprocess.SubprocessError, OSError):
-        return None
-    return out or None
+        return _font_file_on_disk(family, bold)
+    return out or _font_file_on_disk(family, bold)
 
 
 @lru_cache(maxsize=64)

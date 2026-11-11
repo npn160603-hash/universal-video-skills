@@ -190,3 +190,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-044: Creative scores are labelled heuristic
 - **Decision:** creative_heuristics returns HeuristicScore and the report labels them "judgement, not measurement".
 - **Reason:** The spec requires creative scoring to be clearly marked as heuristic, separate from measured QA.
+
+## DEC-045: D-02 and D-07 resolved
+- **D-02:** pipeline.validate_spec checks words, genre, dimensions, fps, style and footage before running; an invalid spec raises a clear error instead of a raw KeyError.
+- **D-07:** resolve_font_file scans common font directories when fc-match is absent, so width measurement uses the same family libass renders (Inter) instead of Pillow's bitmap default.
+
+## DEC-046: Demos A/C/E are technical demonstrations
+- **Decision:** Without real footage, narration or licensed music, demos A, C and E use generated metaphor visuals and a synthetic audio bed, clearly labelled technical. Demo B uses real geodata; D and F use real generators.
+- **Reason:** The spec forbids presenting a synthetic stand-in as a real-media demo.
