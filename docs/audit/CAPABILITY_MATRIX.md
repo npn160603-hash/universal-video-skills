@@ -68,3 +68,15 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 - IMPLEMENTED_UNVERIFIED: 3
 - BLOCKED: 1
 - NOT_IMPLEMENTED: 21
+
+
+## Phase 6 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Infographics | 10 animated chart kinds with validation and metadata | VERIFIED | 21 tests (`test_infographics.py`); pixel checks |
+| Infographics | Animated timelines (6 kinds), playhead, dates | VERIFIED | `test_explainers.py` |
+| Infographics | Diagram engine (7 kinds), overlap avoidance | VERIFIED | `test_explainers.py`; render refuses overlap |
+| Infographics | Visual metaphors (8), illustrative tag | VERIFIED | `test_explainers.py` |
+| Infographics | Animation controls (zoom/pan/exit) | VERIFIED | `test_visuals.py` |
+| Infographics | Timeline integration of visuals | VERIFIED | `test_infographics_render.py` composes 2 clips |

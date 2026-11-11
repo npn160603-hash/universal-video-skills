@@ -104,3 +104,19 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-023: Map frames are drawn with PIL, not through the scene graph
 - **Decision:** `uvs/maps.py` draws its own frames. Only the encoder, `uvs.animate.encode_frames`, is shared.
 - **Reason:** Country polygons and great-circle routes do not fit the scene graph's node types. Keeping them separate avoids forcing a new node kind through the graph.
+
+## DEC-024: Infographics render with PIL at progress p, encoded by the shared pipe
+- **Decision:** Each chart/timeline/diagram/metaphor is a function frame(spec, p) -> PIL image. Video uses uvs.animate.encode_frames.
+- **Reason:** Frames can be checked pixel by pixel (height proportionality, fill fraction, overlap), and the last frame equals the data exactly.
+
+## DEC-025: Single-series bars are coloured per category
+- **Decision:** A one-series bar/ranking chart colours each bar by its index, not one flat colour.
+- **Reason:** Distinct bars read faster in short-form video. Multi-series charts colour by series instead.
+
+## DEC-026: Visual metaphors are always tagged ILLUSTRATIVE
+- **Decision:** Every metaphor frame draws an "ILLUSTRATIVE — not data" tag, enforced in the renderer.
+- **Reason:** The spec requires metaphors that could be mistaken for data to be labelled. Making it unconditional removes the judgement call.
+
+## DEC-027: Diagram layout refuses to render on overlap
+- **Decision:** layout_diagram places nodes on levels; render_diagram_frame raises if any boxes overlap.
+- **Reason:** A silently overlapping diagram is worse than an error. The caller widens the canvas or reduces node size.

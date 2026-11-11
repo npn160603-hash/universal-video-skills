@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 6,
+  "current_phase": 7,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -160,9 +160,29 @@
       }
     },
     "6": {
-      "status": "NOT_STARTED",
-      "title": "Infographics and visual explainers",
-      "note": "spec received; not started"
+      "title": "Advanced infographics and visual explainers",
+      "status": "PARTIAL",
+      "verified": [
+        "10 animated chart kinds (vertical/horizontal bar, line, area, donut, pie, ranking, comparison, progress, counter)",
+        "data validation: missing/non-finite/boolean rejected; negatives rejected where the kind cannot show them; series length and pie totals checked",
+        "chart metadata: title, labels, units, source, legend, theme, font, duration, easing; frame-accurate (final frame = data)",
+        "bar heights proportional to values (pixel-checked 2:1); progress fill matches fraction; pie sweep grows; counters count up; determinism",
+        "6 timeline kinds with moving playhead, highlighted current event, counting dates, before/after constraint",
+        "7 diagram kinds laid out on levels with overlap detection; render refuses overlapping boxes; labels shrink/wrap to fit; staggered node reveal",
+        "8 visual metaphors, each tagged ILLUSTRATIVE; stress vessel fills over time; determinism",
+        "animation controls: zoom, pan, exit fade (pixel-checked); build/reveal/stagger/highlight in renderers; compositing via motion engine",
+        "timeline integration: visuals render to mp4 and compose as timeline clips (validated, rendered end to end)",
+        "4 deliverables rendered and frames inspected (comparison chart, timeline, process diagram, metaphor)"
+      ],
+      "not_done": [
+        "chart types beyond the 10 (e.g. scatter, stacked, radar)",
+        "diagram auto-routing avoids box overlap but not every label/connector crossing in dense graphs",
+        "metaphors are a fixed set of 8; not a general composition system",
+        "camera pan/zoom is a frame crop, not a scene-graph camera"
+      ],
+      "tests": {
+        "added": 50
+      }
     },
     "7": {
       "status": "NOT_STARTED",
