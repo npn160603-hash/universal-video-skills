@@ -141,3 +141,12 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | API | Python SDK + TypeScript client | VERIFIED | SDK flow tested; TS type-checks |
 | API | Reference harness (labelled demo) | VERIFIED | runs full flow |
 | API | Direct editor integration | BLOCKED | editor repo not identified |
+
+## Phase 13 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Export | Hardware/encoder detection (verified) | VERIFIED | `test_export_phase13.py`; nvenc excluded without GPU |
+| Export | Profiles 9:16/16:9/1:1 x 720p/1080p, H.264/H.265, AAC | VERIFIED | correct dims, decode valid |
+| Export | Render cache | VERIFIED | reuse verified (render runs once) |
+| Export | Benchmark (duration/size/fps/decode) | VERIFIED | `EXPORT_BENCHMARK.json` |

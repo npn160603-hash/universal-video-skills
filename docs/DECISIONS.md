@@ -174,3 +174,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-040: Editor integration is BLOCKED; a standalone SDK + reference harness ships instead
 - **Decision:** Per the V3 directive, the target editor is not confirmed. Phase 12 delivers a standalone API, Python SDK, TypeScript client and a labelled reference harness. The harness states it is a demonstration, not an editor integration.
 - **Reason:** Do not integrate into an unconfirmed repository.
+
+## DEC-041: Encoders are verified by test-encode, GPU by nvidia-smi
+- **Decision:** detect_hardware test-encodes each candidate and only reports encoders that actually produce output; hardware encoders are tested only when nvidia-smi reports a GPU.
+- **Reason:** ffmpeg lists nvenc/qsv encoders even with no GPU. The directive says do not assume hardware acceleration. Reporting a non-functional encoder would be a false capability.
+
+## DEC-042: The render cache keys finished files by a content hash of their inputs
+- **Decision:** RenderCache.get_or_render renders to an atomic temp file and reuses an existing output for the same key.
+- **Reason:** The spec asks for a render cache and reusable asset processing. An unchanged render is reused; the key is explicit so the caller controls invalidation.

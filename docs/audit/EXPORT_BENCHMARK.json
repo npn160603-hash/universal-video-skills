@@ -1,0 +1,98 @@
+{
+  "hardware": {
+    "cpu_cores": 2,
+    "ram_gb": 8.41,
+    "gpu_present": false,
+    "gpu_name": "none",
+    "working_video_encoders": [
+      "libx264",
+      "libx265",
+      "libvpx-vp9"
+    ],
+    "working_audio_encoders": [
+      "aac",
+      "libopus",
+      "libmp3lame"
+    ],
+    "listed_hwaccels": [
+      "vdpau",
+      "cuda",
+      "vaapi",
+      "qsv",
+      "drm",
+      "opencl",
+      "vulkan"
+    ],
+    "filter_count": 563
+  },
+  "benchmarks": [
+    {
+      "profile": "9x16_1080p_h264",
+      "render_seconds": 0.467,
+      "output_bytes": 182391,
+      "frames": 90,
+      "encoding_fps": 192.9,
+      "peak_memory_mb": 20.7,
+      "decode_ok": true
+    },
+    {
+      "profile": "16x9_720p_h264",
+      "render_seconds": 0.663,
+      "output_bytes": 1166008,
+      "frames": 90,
+      "encoding_fps": 135.8,
+      "peak_memory_mb": 20.7,
+      "decode_ok": true
+    }
+  ],
+  "export_matrix": [
+    {
+      "profile": "9x16_720p_h264",
+      "aspect": "9:16",
+      "resolution": "720p",
+      "vcodec": "h264",
+      "dimensions": "404x720",
+      "exportable": true
+    },
+    {
+      "profile": "9x16_1080p_h264",
+      "aspect": "9:16",
+      "resolution": "1080p",
+      "vcodec": "h264",
+      "dimensions": "606x1080",
+      "exportable": true
+    },
+    {
+      "profile": "16x9_720p_h264",
+      "aspect": "16:9",
+      "resolution": "720p",
+      "vcodec": "h264",
+      "dimensions": "1280x720",
+      "exportable": true
+    },
+    {
+      "profile": "16x9_1080p_h264",
+      "aspect": "16:9",
+      "resolution": "1080p",
+      "vcodec": "h264",
+      "dimensions": "1920x1080",
+      "exportable": true
+    },
+    {
+      "profile": "1x1_720p_h264",
+      "aspect": "1:1",
+      "resolution": "720p",
+      "vcodec": "h264",
+      "dimensions": "720x720",
+      "exportable": true
+    },
+    {
+      "profile": "1x1_1080p_h264",
+      "aspect": "1:1",
+      "resolution": "1080p",
+      "vcodec": "h264",
+      "dimensions": "1080x1080",
+      "exportable": true
+    }
+  ]
+}

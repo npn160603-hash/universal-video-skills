@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 13,
+  "current_phase": 14,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -323,9 +323,26 @@
       }
     },
     "13": {
-      "status": "NOT_STARTED",
-      "title": "Performance and export engine",
-      "note": "spec received; not started"
+      "title": "Rendering performance and export",
+      "status": "VERIFIED",
+      "verified": [
+        "hardware detection: real CPU count, RAM (psutil), GPU presence via nvidia-smi (not just ffmpeg encoder list), working encoders verified by test-encode",
+        "hardware-accelerated encoders NOT claimed without a GPU (h264_nvenc excluded when no GPU)",
+        "export profiles: 9:16, 16:9, 1:1 at 720p and 1080p (1440p/4K defined), H.264 and H.265, AAC",
+        "each standard profile exports to correct even dimensions and decodes valid; H.265 works and falls back to H.264 when unavailable",
+        "render cache keyed by content hash; unchanged render reused (render runs once); atomic temp swap",
+        "benchmark measures real render duration, output size, encoding FPS, memory, decode validity; truncated file fails decode check",
+        "export capability matrix + measured benchmark report (docs/audit/EXPORT_BENCHMARK.json): 6/6 profiles exportable, ~130-190 fps on 2 cores"
+      ],
+      "not_done": [
+        "incremental rendering is a whole-output cache, not per-segment diffing",
+        "1440p/4K profiles are defined but not benchmarked here (no need and slow on 2 cores)",
+        "resource monitoring is point-in-time memory, not a continuous sampler",
+        "no hardware-accelerated path exercised (no GPU in this environment)"
+      ],
+      "tests": {
+        "added": 16
+      }
     },
     "14": {
       "status": "NOT_STARTED",
