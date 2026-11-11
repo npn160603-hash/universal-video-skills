@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 12,
+  "current_phase": 13,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -297,9 +297,30 @@
       }
     },
     "12": {
-      "status": "NOT_STARTED",
-      "title": "Local web editor integration (SDK and adapter)",
-      "note": "spec received; not started"
+      "title": "General-purpose local editor API and SDK",
+      "status": "PARTIAL",
+      "verified": [
+        "core API (uvs/api.py): project create, analyze, plan, index/retrieve media, list/select style, generate timeline (decision engine), render chart (job), captions, QA",
+        "path safety: all file paths resolve under a workspace root; traversal, absolute paths and symlink escape refused (ProjectRoot); no shell-out on user strings",
+        "job manager: id, status, progress, cancel (cooperative), retry, error reports, outputs, completion metadata; tested lifecycle",
+        "localhost JSON API (uvs/server.py): versioned /v1 routes, binds 127.0.0.1 only (non-loopback refused), 4 MiB body cap, structured JSON errors",
+        "Python SDK (uvs/sdk.py): dependency-free client, wait_for_job; full flow tested over a loopback port incl. a real chart render job",
+        "TypeScript client (sdk/typescript/uvs-client.ts): type-checks under tsc --strict",
+        "reference harness (sdk/examples/reference_harness.py) runs the full editor flow, labelled a demonstration not an editor integration",
+        "versioned schema (schemas/api_v1.schema.json) and example requests/responses (sdk/examples/requests.md)"
+      ],
+      "not_done": [
+        "direct integration with the user's actual editor (BLOCKED: repository not identified)",
+        "render endpoints cover charts; full-video render is available in-process (pipeline) but not yet a streaming job endpoint",
+        "no auth token (loopback-only, single-user local use); add one before any non-loopback exposure",
+        "resource limits are a body cap and worker count; no per-job CPU/memory quota"
+      ],
+      "blocked": [
+        "direct editor integration until the correct repository is identified"
+      ],
+      "tests": {
+        "added": 21
+      }
     },
     "13": {
       "status": "NOT_STARTED",

@@ -2,9 +2,9 @@
 
 ## Current state
 - Branch: `initial-pipeline`. Local commits ahead of `origin/initial-pipeline` (`e84a7c7`): `ea0dc39` (Phase 1), `2528e21` (Phase 2), `f8b0943` (Phase 3), `efb508c` (Phase 4), and the Phase 5 commit (the newest local commit). **Not pushed.** Push needs explicit authorisation (fast-forward only; verify with `git ls-remote`).
-- Current phase: **12** (SDK), not started. Phases 2–9 PARTIAL; Phases 10–11 VERIFIED. D-01 resolved.
+- Current phase: **13** (export), not started. Phases 2–9,12 PARTIAL; Phases 10–11 VERIFIED. D-01 resolved. Editor integration BLOCKED.
 - Blocked: editor repo audit and Phase 12 integration (repo not named). See `INTEGRATION_STATUS.md`.
-- Full suite: 481 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
+- Full suite: 502 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
 
 ## Phase status
 | Phase | Status | Summary |
@@ -21,13 +21,20 @@
 | 9 Colour & VFX | PARTIAL | Colour primitives, numpy frame analysis, shot matching, 20 looks, compositing builders, colour QA. No keyframed masks. |
 | 10 Style system | VERIFIED | 10 full editing presets, Style Lock, validation. D-01 fixed (locked style, not scene 0). |
 | 11 Decision engine | VERIFIED | 12 decisions + 9 scores per scene, enforced critical rules, decision records, overrides preserved on regeneration. |
-| 12–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
+| 12 Local API / SDK | PARTIAL | Core API, job manager, loopback JSON server, Python SDK, TS client, reference harness. Editor integration BLOCKED. |
+| 13–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
 
 ## Phase 3 changed files
 - `uvs/media_index.py`: sidecar `tags` and `description`; `motion_per_second`; metric cache (`index_file`/`scan` take `cache_dir`); `rank(require_known_licence=...)`.
 - `uvs/retrieval.py` (new): lexical search, synonym groups, plan B-roll assignment, CLI.
 - `tests/unit/test_retrieval.py` (new, 20 tests), `tests/render/test_media_motion.py` (new, 10 tests: motion on real clips, cache, CLI).
 - `docs/api/media-retrieval.md`, `docs/PHASE_STATUS.json`, `docs/DECISIONS.md` (DEC-017..019), `docs/KNOWN_LIMITATIONS.md`, `README.md`.
+
+## Phase 12 changed files
+- `uvs/jobs.py`, `uvs/api.py`, `uvs/server.py`, `uvs/sdk.py` (new).
+- `sdk/typescript/uvs-client.ts`, `sdk/examples/reference_harness.py`, `sdk/examples/requests.md`, `schemas/api_v1.schema.json`.
+- `tests/unit/test_jobs.py` (7), `tests/unit/test_api.py` (8), `tests/render/test_server_sdk.py` (6).
+- `docs/api/local-api.md`, `docs/INTEGRATION_STATUS.md`, DEC-039..040, capability matrix Phase 12 rows.
 
 ## Phase 11 changed files
 - `uvs/decision.py` (new).
@@ -87,5 +94,5 @@ See `docs/DECISIONS.md`.
 4. The master prompt was truncated in what was received (Phases 1–15 spec ends mid-Phase-0). Work follows the phase titles and the user's stated constraints.
 
 ## Next executable tasks
-1. Phase 12: standalone local API/SDK — core API over all capabilities, job manager (id/status/progress/cancel/retry), Python SDK, JSON API, TypeScript client, reference harness. Editor integration BLOCKED.
-2. Phase 13 export, Phase 14 QA, Phase 15 demos. D-02 and D-07 still open.
+1. Phase 13: hardware/encoder detection, render cache, preview, cancellation, temp cleanup, export profiles (9:16/16:9/1:1; 720p/1080p; H.264/H.265; AAC), measured benchmark report.
+2. Phase 14 QA, Phase 15 demos. D-02 and D-07 still open.

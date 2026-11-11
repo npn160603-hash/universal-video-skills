@@ -25,3 +25,7 @@ An SDK and an adapter interface, so the editor can call the pipeline without a s
 | ffmpeg | VERIFIED | 6.1.1 with the filters used by the code. |
 | Fonts (fontconfig) | IMPLEMENTED_UNVERIFIED on other platforms | Works on Linux with fc-match. Fallback not tested (D-07). |
 | TTS, ASR, maps, paid APIs | NOT_IMPLEMENTED | None installed. None used. |
+
+## Phase 12 — local API / SDK
+- Standalone local API, job manager, localhost JSON server, Python SDK, TypeScript client, reference harness: DELIVERED and tested.
+- Direct integration with the user's editor (Auto-Editing-OutlierY / Premiere-Auto-Cut-v0.6.12 / ME-OutlierY / AESpace-v1 or another): **BLOCKED** until the user confirms the correct repository. No editor repo has been chosen or modified.

@@ -166,3 +166,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-038: Overrides survive regeneration
 - **Decision:** regenerate() re-derives auto decisions but re-applies the fields a user overrode, plus any new overrides.
 - **Reason:** The spec requires user edits to be preserved when the timeline is regenerated.
+
+## DEC-039: The local API binds loopback only and never shells out on user input
+- **Decision:** uvs/server.make_server refuses any non-loopback host; all file paths go through ProjectRoot; rendering uses in-process renderers, not shell strings.
+- **Reason:** The spec requires localhost-only binding, path restriction and no command injection. There is no transport-level path or shell surface.
+
+## DEC-040: Editor integration is BLOCKED; a standalone SDK + reference harness ships instead
+- **Decision:** Per the V3 directive, the target editor is not confirmed. Phase 12 delivers a standalone API, Python SDK, TypeScript client and a labelled reference harness. The harness states it is a demonstration, not an editor integration.
+- **Reason:** Do not integrate into an unconfirmed repository.

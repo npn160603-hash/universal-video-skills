@@ -130,3 +130,14 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Decision | Decision records (reason, alternatives, confidence) | VERIFIED | `test_decision.py` |
 | Decision | Overrides preserved on regeneration | VERIFIED | `test_decision.py` |
 | Decision | Real-plan integration | VERIFIED | `test_decision.py` |
+
+## Phase 12 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| API | Core API over all capabilities | VERIFIED | `test_api.py` |
+| API | Job manager (status/progress/cancel/retry) | VERIFIED | `test_jobs.py` |
+| API | Localhost JSON server (loopback only) | VERIFIED | `test_server_sdk.py` |
+| API | Python SDK + TypeScript client | VERIFIED | SDK flow tested; TS type-checks |
+| API | Reference harness (labelled demo) | VERIFIED | runs full flow |
+| API | Direct editor integration | BLOCKED | editor repo not identified |

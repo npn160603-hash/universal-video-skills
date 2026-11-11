@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UVS Local API v1",
+  "version": "1.0.0",
+  "description": "Request/response envelopes for the UVS local JSON API (loopback only).",
+  "definitions": {
+    "word": {"type": "object", "required": ["text", "start", "end"],
+      "properties": {"text": {"type": "string"}, "start": {"type": "number"}, "end": {"type": "number"}}},
+    "job": {"type": "object", "required": ["id", "status"],
+      "properties": {"id": {"type": "string"},
+        "status": {"enum": ["queued", "running", "succeeded", "failed", "cancelled"]},
+        "progress": {"type": "number"}, "outputs": {"type": "array", "items": {"type": "string"}},
+        "error": {"type": ["string", "null"]}}},
+    "error": {"type": "object", "required": ["error"], "properties": {"error": {"type": "string"}}}
+  }
+}
