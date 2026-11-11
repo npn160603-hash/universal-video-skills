@@ -17,7 +17,7 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Captions | Segmentation, measured two-line layout, ASS/SRT/VTT export, validation | VERIFIED | 26 unit tests (`test_captions.py`); demo output |
 | Captions | Vietnamese text, NFC normalization | VERIFIED | demo words include an NFD word; frames checked |
 | Captions | Keyword highlight | VERIFIED | caption unit tests; demo keywords |
-| Captions | Named styles | PARTIAL | 4 of 7 required: Documentary Minimal, Cinematic, Bold Shorts, Emotional Storytelling |
+| Captions | Named styles | VERIFIED | all 7 required styles; each builds valid ASS, rendered (`test_caption_styles.py`, `test_captions_phase7.py`) |
 | Captions | Clean Modern, Podcast Highlight, Educational styles | NOT_IMPLEMENTED | not in `STYLES` |
 | Captions | Speech-to-text, speaker-aware styles, extra languages | NOT_IMPLEMENTED | no ASR installed |
 | QA | ffprobe stream checks, decode, A/V duration sync | VERIFIED | `qa_report.json`, 15 pass on demo |
@@ -80,3 +80,14 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Infographics | Visual metaphors (8), illustrative tag | VERIFIED | `test_explainers.py` |
 | Infographics | Animation controls (zoom/pan/exit) | VERIFIED | `test_visuals.py` |
 | Infographics | Timeline integration of visuals | VERIFIED | `test_infographics_render.py` composes 2 clips |
+
+## Phase 7 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Speech | Capability detection (ASR/TTS engines) | VERIFIED | `test_speech.py` |
+| Speech | Model-free TTS (silence, click track) real WAV | VERIFIED | `test_speech.py` word-aligned energy |
+| Speech | Silence/VAD via ffmpeg, segmentation | VERIFIED | `test_speech.py`, `test_captions_phase7.py` |
+| Speech | External-timestamp fallback | VERIFIED | `test_speech.py` |
+| Speech | Real ASR / real speech TTS | BLOCKED | no engine installed; interfaces ready |
+| Captions | Typography effects, layout QA, Vietnamese | VERIFIED | `test_caption_styles.py`; frames inspected |

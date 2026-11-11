@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 7,
+  "current_phase": 8,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -185,9 +185,30 @@
       }
     },
     "7": {
-      "status": "NOT_STARTED",
-      "title": "Speech, TTS, subtitles",
-      "note": "spec received; not started"
+      "title": "Speech, TTS, captions and alignment",
+      "status": "PARTIAL",
+      "verified": [
+        "capability detection probes whisper/faster_whisper/vosk (ASR) and espeak-ng/piper/coqui (TTS); reports none installed honestly",
+        "provider-independent TTS and ASR interfaces (Protocols) with VoiceSpec (language, voice, rate, sample rate, format, identity, pronunciation)",
+        "real model-free TTS: SilenceTTS and ClickTrackTTS write genuine WAV (verified length and word-aligned energy); labelled speech=False",
+        "external-timestamp fallback (ExternalTimestampASR, words_from_timestamps) validates monotonic order",
+        "silence/VAD and loudness via ffmpeg silencedetect (verified gaps fall between clicks); speech/silence segmentation",
+        "word/phrase/sentence boundaries and pause detection from timings; subtitle timeline",
+        "all 7 caption styles present (added clean_modern box background, podcast_highlight, educational); each builds valid ASS with 0 errors",
+        "typography effects: typewriter, staggered words, phrase animation, mask reveal, speaker colour, keyword/word highlight",
+        "layout QA: overflow, safe area, overlaps, line density (base), plus unreadable font, words-per-phrase, NFC/diacritic checks",
+        "Vietnamese diacritics detected (precomposed and decomposed) and rendered by libass (frames inspected)"
+      ],
+      "not_done": [
+        "real ASR transcription (BLOCKED: no whisper/vosk model; download not authorised)",
+        "real speech TTS (BLOCKED: no espeak-ng/piper; apt/model install not authorised)",
+        "speaker segmentation from audio (only interface + colour differentiation; no diarization model)",
+        "forced alignment from audio (fallback uses supplied or TTS timings, not acoustic alignment)",
+        "mask_reveal is an ASS intent tag, not a pixel-accurate clip wipe"
+      ],
+      "tests": {
+        "added": 32
+      }
     },
     "8": {
       "status": "NOT_STARTED",

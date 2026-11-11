@@ -120,3 +120,16 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-027: Diagram layout refuses to render on overlap
 - **Decision:** layout_diagram places nodes on levels; render_diagram_frame raises if any boxes overlap.
 - **Reason:** A silently overlapping diagram is worse than an error. The caller widens the canvas or reduces node size.
+
+## DEC-028: Real ASR/TTS stay BLOCKED; interfaces and model-free providers ship
+- **Decision:** uvs/speech.py defines ASR/TTS Protocols and capability detection, but installs no engine. SilenceTTS and ClickTrackTTS produce real WAV for timing/mixing tests; they are not speech (speech=False).
+- **Reason:** No engine is installed and apt/model installs need authorisation (DEC per V3 directive). A click track is enough to exercise alignment and silence detection with real audio.
+- **Unblock:** install whisper/vosk (ASR) or espeak-ng/piper (TTS) and register a provider; capability detection will report it.
+
+## DEC-029: Caption styles gain a background field; clean_modern uses an opaque box
+- **Decision:** CaptionStyle adds background ("outline"|"box"), box_color, box_alpha, line_spacing, max_words. to_ass maps "box" to ASS BorderStyle 3.
+- **Reason:** The spec requires a background treatment per style; a flat white style (clean_modern) needs a box to stay readable.
+
+## DEC-030: Vietnamese text is NFC-normalized and measured with the real font
+- **Decision:** Diacritic detection decomposes (NFD) to catch precomposed and combining forms; QA warns on non-NFC words.
+- **Reason:** libass renders NFC reliably; detecting diacritics only in one form would miss half the cases.

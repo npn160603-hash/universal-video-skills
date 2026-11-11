@@ -7,6 +7,9 @@ Status uses the contract legend. Each item was checked against code at `08e9aae`
 | 1 | No completed animated map engine | PARTIAL | Country shapes, projections, great-circle routes, markers, and camera moves are implemented and tested on Natural Earth 110 m. No labels, choropleths, or bundled data. |
 | 2 | No semantic media search | PARTIAL | Lexical search over sidecar tags, descriptions and file names, with a small synonym list. No embeddings, so no visual-content matching. |
 | 12 | Motion is measured as scene-cut rate only | PARTIAL | `motion_per_second` counts hard cuts. Subject and camera motion are not measured. |
+| 17 | Real ASR is unavailable | BLOCKED | No whisper/vosk model installed; download not authorised. Interface + external-timestamp fallback work. |
+| 18 | Real speech TTS is unavailable | BLOCKED | No espeak-ng/piper; apt/model install not authorised. Real WAV test providers (silence, click track) work. |
+| 19 | Speaker diarization from audio | PARTIAL | Interface and colour differentiation only; no diarization model. |
 | 14 | Chart set is the 10 required kinds | PARTIAL | No scatter, stacked or radar charts. The 10 required kinds are implemented and tested. |
 | 15 | Diagram label/connector crossings | PARTIAL | Node boxes never overlap (checked), but dense graphs may still cross connectors. |
 | 16 | Visual metaphors are a fixed set of 8 | PARTIAL | Each is a hand-built illustration, always tagged illustrative. Not a general metaphor composer. |

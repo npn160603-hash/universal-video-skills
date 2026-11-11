@@ -70,6 +70,11 @@ class CaptionStyle:
     pop_scale: int = 115
     outline_color: str = "000000"
     shadow_color: str = "000000"
+    background: str = "outline"   # "outline" (stroked text) or "box" (opaque caption box)
+    box_color: str = "000000"     # RRGGBB fill when background == "box"
+    box_alpha: int = 160          # 0 = opaque, 255 = invisible (ASS alpha), used for the box
+    line_spacing: int = 0         # extra px between lines (ASS Spacing is horizontal; used by QA)
+    max_words: int = 7            # max words per phrase/cue, used by segmentation QA
 
 
 STYLES: dict[str, CaptionStyle] = {
@@ -92,6 +97,22 @@ STYLES: dict[str, CaptionStyle] = {
         name="emotional_storytelling", font="Inter", size=56, bold=False,
         primary="EFE8DC", highlight=None, outline=2, shadow=1,
         margin_v=340, animation="fade", fade_ms=700,
+    ),
+    "clean_modern": CaptionStyle(
+        name="clean_modern", font="Inter", size=64, bold=True,
+        primary="FFFFFF", highlight="4FA3FF", outline=0, shadow=0,
+        margin_v=360, animation="fade", fade_ms=120, max_lines=2,
+        background="box", box_color="101418", box_alpha=120, max_words=6,
+    ),
+    "podcast_highlight": CaptionStyle(
+        name="podcast_highlight", font="Inter", size=76, bold=True,
+        primary="FFFFFF", highlight="FFE14D", outline=4, shadow=0,
+        margin_v=450, animation="pop", fade_ms=90, pop_scale=122, max_lines=2,
+    ),
+    "educational": CaptionStyle(
+        name="educational", font="Inter", size=58, bold=True,
+        primary="FFFFFF", highlight="57C48C", outline=3, shadow=1,
+        margin_v=300, animation="fade", fade_ms=160, max_lines=2,
     ),
 }
 
@@ -360,6 +381,15 @@ def _ass_cue_text(cue: Cue, style: CaptionStyle, keys: frozenset[str], auto_numb
 def to_ass(cues: list[Cue], style: CaptionStyle, frame_w: int, frame_h: int,
            keys: frozenset[str] = frozenset(), auto_numbers: bool = False) -> str:
     bold = -1 if style.bold else 0
+    border_style = 3 if style.background == "box" else 1
+    # For a box, BackColour carries the box fill and alpha; outline becomes the box padding.
+    if style.background == "box":
+        a = max(0, min(255, style.box_alpha))
+        back = f"&H{a:02X}{style.box_color[4:6]}{style.box_color[2:4]}{style.box_color[0:2]}"
+        outline_px = max(style.outline, 6)
+    else:
+        back = _ass_color(style.shadow_color)
+        outline_px = style.outline
     header = [
         "[Script Info]",
         "ScriptType: v4.00+",
@@ -374,8 +404,8 @@ def to_ass(cues: list[Cue], style: CaptionStyle, frame_w: int, frame_h: int,
         "BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
         (f"Style: Default,{style.font},{style.size},{_ass_color(style.primary)},"
          f"{_ass_color(style.primary)},{_ass_color(style.outline_color)},"
-         f"{_ass_color(style.shadow_color)},{bold},0,0,0,100,100,0,0,1,"
-         f"{style.outline},{style.shadow},2,{style.margin_h},{style.margin_h},{style.margin_v},1"),
+         f"{back},{bold},0,0,0,100,100,{style.line_spacing},0,{border_style},"
+         f"{outline_px},{style.shadow},2,{style.margin_h},{style.margin_h},{style.margin_v},1"),
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
