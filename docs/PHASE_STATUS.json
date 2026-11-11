@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 10,
+  "current_phase": 11,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -256,9 +256,23 @@
       }
     },
     "10": {
-      "status": "NOT_STARTED",
-      "title": "Ten video style presets",
-      "note": "spec received; not started"
+      "title": "Complete video style system",
+      "status": "VERIFIED",
+      "verified": [
+        "10 full editing presets (not LUTs): cinematic_documentary, emotional_storytelling, modern_lifestyle, psychology_explainer, educational_shorts, viral_storytelling, minimal_premium, investigative_documentary, travel_story, motion_graphics_explainer",
+        "each preset defines all 17 required fields (narrative structure, shot duration, cut frequency, transition policy, typography, camera, easing, animation intensity, visual effects, colour grade, b-roll, music direction, sfx, map style, infographic theme, safe area)",
+        "style validation: bad look/caption/intensity/emotion/easing/theme/frequency rejected; all 10 presets validate at import",
+        "Style Lock: one preset resolved per project, identical config for every scene; deterministic signature",
+        "D-01 fixed: pipeline uses the locked project style, not scene 0's look (verified end to end: scene0 look desaturated_emotional, locked look dark_investigative_v2 applied to all scenes)",
+        "all 10 styles grade to distinct looks (10/10 distinct colour signatures); full pipeline renders with a locked style"
+      ],
+      "not_done": [
+        "presets set policy fields (cut frequency, b-roll preference) that the current pipeline records but does not yet fully enforce in editing — the decision engine (Phase 11) consumes them",
+        "safe-area is defined per style but enforced only via caption margins so far"
+      ],
+      "tests": {
+        "added": 15
+      }
     },
     "11": {
       "status": "NOT_STARTED",

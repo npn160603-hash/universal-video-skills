@@ -150,3 +150,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-034: The ten spec-named looks live in uvs.grade.LOOKS natively
 - **Decision:** Documentary Natural ... High Contrast Editorial are defined in grade.py (not injected from color.py), so LOOKS is complete regardless of import order; the effect schema enum is generated from LOOKS.
 - **Reason:** An earlier version mutated LOOKS on import of color.py, making the schema-sync test import-order dependent.
+
+## DEC-035: Style Lock replaces scene-0 look inheritance (fixes D-01)
+- **Decision:** A project names a style (spec['style']); StyleLock resolves one VideoStyle preset and applies its look to every scene. Without a style, the pipeline falls back to the old scene-0 look but records it as a fallback.
+- **Reason:** D-01: the whole video inherited whatever look scene 0 carried. Verified end to end that a locked style overrides scene 0.
+
+## DEC-036: A VideoStyle is a full editing preset, not a LUT
+- **Decision:** Each of the 10 presets fixes narrative, pacing, transitions, typography, camera, easing, animation, effects, grade, b-roll, music, sfx, map and infographic style, plus a safe area.
+- **Reason:** The spec requires ten full presets. Validation keeps them internally consistent (every referenced look/caption/emotion exists).

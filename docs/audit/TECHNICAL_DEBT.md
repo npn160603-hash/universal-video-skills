@@ -4,7 +4,7 @@ Each item lists the evidence seen in code. Severity: H = blocks correct output o
 
 | ID | Sev | Item | Evidence |
 |---|---|---|---|
-| D-01 | H | **Style lock applies only the first scene's look.** The plan has a per-scene `color_look`, but the whole timeline gets one look. The decision log still says "applied to every scene". | `uvs/pipeline.py` line 206–210 uses `plan["scenes"][0]["color_look"]`; `director.py:194` sets per-scene `color_look`. |
+| D-01 | H | **Style lock applies only the first scene's look.** The plan has a per-scene `color_look`, but the whole timeline gets one look. The decision log still says "applied to every scene". | `uvs/pipeline.py` line 206–210 uses `plan["scenes"][0]["color_look"]`; `director.py:194` sets per-scene `color_look`. | — RESOLVED in Phase 10 (Style Lock; see DEC-035)
 | D-02 | H | **No input validation for `spec.json`.** An unknown genre raises a raw KeyError. Footage resolution, fps, and count are not checked against the project. | `pipeline.run` reads `spec["genre"]` and `D.GENRES[...]` with no check. |
 | D-03 | M | **Three lossy re-encodes** in the main path (timeline, grade, burn-in). Each adds generation loss. | `T.render`, `G.grade`, `R.burn_captions` each run libx264 at CRF 18. |
 | D-04 | M | **Two render paths** (`uvs/render.py` standalone, `pipeline.run`) build base and captions separately. Fixes must be made twice. | `render.py:make_base`, `burn_captions`, `render_captioned` vs `pipeline.run`. |

@@ -25,6 +25,7 @@ from uvs import director as D
 from uvs import grade as G
 from uvs import qa as Q
 from uvs import timeline as T
+from uvs.styles import StyleLock
 
 RATE = 48000
 TAIL_SECONDS = 0.6
@@ -204,11 +205,22 @@ def run(spec_path: str | Path, out_dir: str | Path) -> dict:
     for c in tl.tracks[0].clips[1:]:
         applied_transitions[c.transition] += 1
 
-    # 4. Grade (style lock: one look for the whole timeline)
-    look = plan["scenes"][0]["color_look"]
-    intensity = spec.get("look_intensity", "standard")
+    # 4. Grade. Style Lock (fixes D-01): the look comes from an explicit project style, not from
+    # whatever look scene 0 happened to carry. A locked style is resolved once and applied to every
+    # scene. If no style is named, fall back to the legacy scene-0 look but record it as a fallback.
+    style_name = spec.get("style")
+    if style_name:
+        lock = StyleLock.resolve(style_name)
+        look = lock.style.color_grade
+        intensity = spec.get("look_intensity", lock.style.color_intensity)
+        decisions.append(f"style lock: preset '{style_name}' -> look '{look}' at '{intensity}', "
+                         f"applied identically to all {len(plan['scenes'])} scenes")
+    else:
+        look = plan["scenes"][0]["color_look"]
+        intensity = spec.get("look_intensity", "standard")
+        decisions.append(f"style lock: no project style named; fell back to scene-0 look '{look}' "
+                         f"at '{intensity}' (set spec['style'] to lock a preset)")
     graded = stage("grade", lambda: G.grade(timeline_mp4, out / "graded.mp4", G.look_filter(look, intensity)))
-    decisions.append(f"style lock: look '{look}' at '{intensity}' applied to every scene")
 
     # 5. Captions burn-in (after grading, so captions keep their colours)
     captioned = stage("burn_captions", lambda: backend.burn_captions(graded, cap_files["ass"], out / "video_captioned.mp4"))

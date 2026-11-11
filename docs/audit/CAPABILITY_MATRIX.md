@@ -111,3 +111,12 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Colour | 20 looks (10 + 10 spec-named) | VERIFIED | all render; schema in sync |
 | Colour | Colour QA (sat/crush/clip) | VERIFIED | `test_color.py` |
 | Colour | Compositing builders (chroma, blur, glow, vignette, grain, leak) | VERIFIED | glow/chroma run |
+
+## Phase 10 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Styles | 10 full editing presets (all 17 fields) | VERIFIED | `test_styles.py` |
+| Styles | Style Lock, deterministic per-scene config | VERIFIED | `test_styles.py` |
+| Styles | D-01 fixed (locked style, not scene 0) | VERIFIED | pipeline e2e; `test_styles_phase10.py` |
+| Styles | 10 styles grade to distinct looks | VERIFIED | 10/10 distinct signatures |

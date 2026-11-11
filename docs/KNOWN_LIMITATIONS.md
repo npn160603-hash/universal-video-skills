@@ -7,6 +7,7 @@ Status uses the contract legend. Each item was checked against code at `08e9aae`
 | 1 | No completed animated map engine | PARTIAL | Country shapes, projections, great-circle routes, markers, and camera moves are implemented and tested on Natural Earth 110 m. No labels, choropleths, or bundled data. |
 | 2 | No semantic media search | PARTIAL | Lexical search over sidecar tags, descriptions and file names, with a small synonym list. No embeddings, so no visual-content matching. |
 | 12 | Motion is measured as scene-cut rate only | PARTIAL | `motion_per_second` counts hard cuts. Subject and camera motion are not measured. |
+| 23 | Style policy fields not fully enforced in editing | PARTIAL | Presets define cut frequency, b-roll preference etc.; the Phase 11 decision engine consumes them. Grade/caption/look are enforced now. |
 | 21 | Shot matching corrects mean colour only | PARTIAL | Per-channel mean gain; not full histogram or contrast matching. Verified distance reduction. |
 | 22 | Animated masks / track mattes / motion trails | PARTIAL | Shape masks via scene graph; compositing filter builders exist; no keyframed mask compositor. |
 | 20 | Beat tracking verified on click tracks only | PARTIAL | Tempo within 5% on synthetic clicks; polyphonic music may mis-track (octave errors). |
