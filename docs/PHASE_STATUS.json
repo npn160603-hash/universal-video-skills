@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 9,
+  "current_phase": 10,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -234,9 +234,26 @@
       }
     },
     "9": {
-      "status": "NOT_STARTED",
-      "title": "Color grading, compositing, VFX",
-      "note": "spec received; not started"
+      "title": "Advanced colour, compositing and VFX",
+      "status": "PARTIAL",
+      "verified": [
+        "colour primitives build valid ffmpeg chains: exposure, contrast, saturation, gamma, white balance (colortemperature), tint, lift/gamma/gain (colorbalance), curves; all run and change frames",
+        "frame analysis in numpy: mean RGB, luma, contrast, saturation, warmth (R/B), shadow crush, highlight clip — measured",
+        "shot matching: per-channel gain brings a tinted frame toward a reference (distance 78->1.5), strength 0..1 monotonic, verified on real frames",
+        "colour QA flags excessive saturation, crushed shadows, clipped highlights; passes balanced frames",
+        "10 original looks (existing) + 10 spec-named looks (Documentary Natural ... High Contrast Editorial) all render; schema enum kept in sync",
+        "compositing builders: chroma key, gaussian blur, glow (split+blur+screen), vignette, film grain, unsharp, light leak, alpha over — glow and chromakey filtergraphs run",
+        "comparison render + measurable colour-analysis report (warmth/sat/luma per look)"
+      ],
+      "not_done": [
+        "animated masks and track mattes (shape masks via scene graph only; no keyframed mask compositor here)",
+        "motion trails (tmix/tblend available but no dedicated helper verified)",
+        "LUT files are supported (lut3d) but none are bundled",
+        "shot matching corrects mean colour, not full histogram or contrast shape"
+      ],
+      "tests": {
+        "added": 21
+      }
     },
     "10": {
       "status": "NOT_STARTED",

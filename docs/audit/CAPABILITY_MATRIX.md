@@ -101,3 +101,13 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Audio | Beat-aligned cuts, gain automation | VERIFIED | `test_audio_intel.py` |
 | Audio | Emotional sound direction | VERIFIED | `test_audio_intel.py` |
 | Audio | Audio QA (LUFS, TP, clipping, silence, balance) | VERIFIED | real measurements (`test_audio_phase8.py`) |
+
+## Phase 9 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Colour | Primitives (exposure, WB, tint, curves, LGG) | VERIFIED | chains run and change frames (`test_color_phase9.py`) |
+| Colour | Frame analysis + shot matching | VERIFIED | distance 78->1.5 on real frames |
+| Colour | 20 looks (10 + 10 spec-named) | VERIFIED | all render; schema in sync |
+| Colour | Colour QA (sat/crush/clip) | VERIFIED | `test_color.py` |
+| Colour | Compositing builders (chroma, blur, glow, vignette, grain, leak) | VERIFIED | glow/chroma run |

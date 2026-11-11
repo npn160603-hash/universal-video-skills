@@ -9,15 +9,25 @@
       "type": "string",
       "enum": [
         "bright_educational",
+        "bright_educational_v2",
         "clean_documentary",
         "dark_investigative",
+        "dark_investigative_v2",
         "desaturated_emotional",
+        "desaturated_emotional_v2",
+        "documentary_natural",
+        "high_contrast_editorial",
         "modern_commercial",
         "moody_cinematic",
+        "moody_cinematic_v2",
         "natural_daylight",
+        "neutral_commercial",
         "retro_film",
         "soft_romantic",
-        "warm_lifestyle"
+        "soft_romantic_v2",
+        "vintage_film",
+        "warm_lifestyle",
+        "warm_lifestyle_v2"
       ]
     },
     "intensity": {

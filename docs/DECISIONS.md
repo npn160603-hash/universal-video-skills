@@ -142,3 +142,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-032: Audio QA measures, never estimates
 - **Decision:** Loudness/true-peak via ffmpeg ebur128; clipping by scanning decoded samples; silence via silencedetect.
 - **Reason:** The directive forbids invented numbers. Every QA figure comes from a tool run on the actual audio.
+
+## DEC-033: Colour analysis and shot matching run in numpy on decoded frames
+- **Decision:** uvs/color.py decodes frames and measures mean RGB, luma, saturation, warmth, crush and clip directly. Shot matching computes a per-channel gain from measured means.
+- **Reason:** The directive forbids invented numbers and asks for measurable colour reports. Matching is verified by the measured distance dropping.
+
+## DEC-034: The ten spec-named looks live in uvs.grade.LOOKS natively
+- **Decision:** Documentary Natural ... High Contrast Editorial are defined in grade.py (not injected from color.py), so LOOKS is complete regardless of import order; the effect schema enum is generated from LOOKS.
+- **Reason:** An earlier version mutated LOOKS on import of color.py, making the schema-sync test import-order dependent.
