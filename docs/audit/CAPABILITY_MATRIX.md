@@ -120,3 +120,13 @@ Detailed per-feature notes: `architecture/capability-matrix.md`. This file appli
 | Styles | Style Lock, deterministic per-scene config | VERIFIED | `test_styles.py` |
 | Styles | D-01 fixed (locked style, not scene 0) | VERIFIED | pipeline e2e; `test_styles_phase10.py` |
 | Styles | 10 styles grade to distinct looks | VERIFIED | 10/10 distinct signatures |
+
+## Phase 11 additions
+
+| Area | Capability | Status | Evidence |
+|---|---|---|---|
+| Decision | 12 decisions + 9 scores per scene | VERIFIED | `test_decision.py` |
+| Decision | Critical rules enforced | VERIFIED | each rule has a firing test |
+| Decision | Decision records (reason, alternatives, confidence) | VERIFIED | `test_decision.py` |
+| Decision | Overrides preserved on regeneration | VERIFIED | `test_decision.py` |
+| Decision | Real-plan integration | VERIFIED | `test_decision.py` |

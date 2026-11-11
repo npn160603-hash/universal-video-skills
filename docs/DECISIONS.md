@@ -158,3 +158,11 @@ Each entry: the decision, the reason, and what it affects.
 ## DEC-036: A VideoStyle is a full editing preset, not a LUT
 - **Decision:** Each of the 10 presets fixes narrative, pacing, transitions, typography, camera, easing, animation, effects, grade, b-roll, music, sfx, map and infographic style, plus a safe area.
 - **Reason:** The spec requires ten full presets. Validation keeps them internally consistent (every referenced look/caption/emotion exists).
+
+## DEC-037: The decision engine is a scored, rule-enforcing layer over the narrative plan
+- **Decision:** uvs/decision.py turns a narrative plan + locked style + capabilities into scored per-scene EditDecisions and executable instructions. Critical rules mutate the selection (drop effects, cap dissolves, drop irrelevant footage), they are not advisory.
+- **Reason:** The spec requires decisions AND enforcement AND explainability. Every rule has a test that shows it firing.
+
+## DEC-038: Overrides survive regeneration
+- **Decision:** regenerate() re-derives auto decisions but re-applies the fields a user overrode, plus any new overrides.
+- **Reason:** The spec requires user edits to be preserved when the timeline is regenerated.

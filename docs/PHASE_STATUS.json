@@ -2,7 +2,7 @@
   "project": "universal-video-skills",
   "branch": "initial-pipeline",
   "audited_commit": "08e9aae",
-  "current_phase": 11,
+  "current_phase": 12,
   "status_legend": [
     "VERIFIED",
     "IMPLEMENTED_UNVERIFIED",
@@ -275,9 +275,26 @@
       }
     },
     "11": {
-      "status": "NOT_STARTED",
-      "title": "Intelligent editing decision engine",
-      "note": "spec received; not started"
+      "title": "AI editing decision engine",
+      "status": "VERIFIED",
+      "verified": [
+        "consumes narrative plan, locked style, media matches, format, target duration, capabilities",
+        "decides all 12 required fields per scene (shot duration, b-roll, visual composition, camera, motion graphics, map, chart, transition, caption, music, sfx, colour grade)",
+        "scores all 9 criteria per scene (narrative/emotional relevance, visual clarity, media appropriateness, continuity, motion consistency, audio readability, style coherence, render feasibility)",
+        "critical rules enforced and tested: dissolves capped, irrelevant footage dropped, over-budget scenes simplified, neutral scenes get no decorative effects, repeated camera varied, capability gates maps/charts, reflective quiet scenes keep silence",
+        "per-scene decision record: selected, reason, alternatives, parameters, relevance score, confidence, uncertainty, technical limitations",
+        "manual overrides replace fields and survive regeneration; new overrides merge",
+        "executable timeline instructions with contiguous frames; deterministic",
+        "integrates with a real narrative plan end to end"
+      ],
+      "not_done": [
+        "decisions produce instructions, not yet a fully rendered timeline wired through pipeline (pipeline uses the director path; the engine is a parallel, tested layer)",
+        "scoring weights are uniform; no learned weighting",
+        "'do not cover subjects with captions' is enforced via caption safe margins, not subject detection"
+      ],
+      "tests": {
+        "added": 19
+      }
     },
     "12": {
       "status": "NOT_STARTED",

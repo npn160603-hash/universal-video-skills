@@ -2,9 +2,9 @@
 
 ## Current state
 - Branch: `initial-pipeline`. Local commits ahead of `origin/initial-pipeline` (`e84a7c7`): `ea0dc39` (Phase 1), `2528e21` (Phase 2), `f8b0943` (Phase 3), `efb508c` (Phase 4), and the Phase 5 commit (the newest local commit). **Not pushed.** Push needs explicit authorisation (fast-forward only; verify with `git ls-remote`).
-- Current phase: **11** (decision engine), not started. Phases 2–9 PARTIAL; Phase 10 VERIFIED. D-01 resolved.
+- Current phase: **12** (SDK), not started. Phases 2–9 PARTIAL; Phases 10–11 VERIFIED. D-01 resolved.
 - Blocked: editor repo audit and Phase 12 integration (repo not named). See `INTEGRATION_STATUS.md`.
-- Full suite: 462 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
+- Full suite: 481 tests OK, 4 skipped (real-data map tests need `UVS_NATURAL_EARTH_SHP`). (`python3 -m unittest discover -s tests -t .`, about 120 s).
 
 ## Phase status
 | Phase | Status | Summary |
@@ -20,13 +20,19 @@
 | 8 Sound design | PARTIAL | Voice chain (EQ, de-ess), tempo/beat detection (within 5% on clicks), beat-aligned cuts, emotional direction, gain automation, audio QA (LUFS, TP, clipping). |
 | 9 Colour & VFX | PARTIAL | Colour primitives, numpy frame analysis, shot matching, 20 looks, compositing builders, colour QA. No keyframed masks. |
 | 10 Style system | VERIFIED | 10 full editing presets, Style Lock, validation. D-01 fixed (locked style, not scene 0). |
-| 11–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
+| 11 Decision engine | VERIFIED | 12 decisions + 9 scores per scene, enforced critical rules, decision records, overrides preserved on regeneration. |
+| 12–15 | NOT_STARTED | See `PHASE_STATUS.json`. |
 
 ## Phase 3 changed files
 - `uvs/media_index.py`: sidecar `tags` and `description`; `motion_per_second`; metric cache (`index_file`/`scan` take `cache_dir`); `rank(require_known_licence=...)`.
 - `uvs/retrieval.py` (new): lexical search, synonym groups, plan B-roll assignment, CLI.
 - `tests/unit/test_retrieval.py` (new, 20 tests), `tests/render/test_media_motion.py` (new, 10 tests: motion on real clips, cache, CLI).
 - `docs/api/media-retrieval.md`, `docs/PHASE_STATUS.json`, `docs/DECISIONS.md` (DEC-017..019), `docs/KNOWN_LIMITATIONS.md`, `README.md`.
+
+## Phase 11 changed files
+- `uvs/decision.py` (new).
+- `tests/unit/test_decision.py` (19).
+- `docs/api/decision.md`, DEC-037..038, capability matrix Phase 11 rows.
 
 ## Phase 10 changed files
 - `uvs/styles.py` (new), `uvs/pipeline.py` (Style Lock; D-01 fix), `docs/audit/TECHNICAL_DEBT.md` (D-01 resolved).
@@ -81,6 +87,5 @@ See `docs/DECISIONS.md`.
 4. The master prompt was truncated in what was received (Phases 1–15 spec ends mid-Phase-0). Work follows the phase titles and the user's stated constraints.
 
 ## Next executable tasks
-1. Phase 11: AI editing decision engine — consume script, plan, media, style, format; decide shot/b-roll/transition/caption/music/colour per scene; score; per-scene decision records; manual overrides preserved on regeneration.
-2. Phase 12 SDK, Phase 13 export, Phase 14 QA, Phase 15 demos.
-3. D-02 (spec validation) and D-07 (font fallback) still open.
+1. Phase 12: standalone local API/SDK — core API over all capabilities, job manager (id/status/progress/cancel/retry), Python SDK, JSON API, TypeScript client, reference harness. Editor integration BLOCKED.
+2. Phase 13 export, Phase 14 QA, Phase 15 demos. D-02 and D-07 still open.
